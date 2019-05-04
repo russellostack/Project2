@@ -30,6 +30,6 @@ create table user_weight(
     id int not null auto_increment,
     user_weight int(10) not null,
     input_time DATETIME,
-    foreign key(id) REFERENCES(users),
+    foreign key(id) REFERENCES users(id),
     primary key (id)
 );
