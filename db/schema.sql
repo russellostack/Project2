@@ -30,4 +30,4 @@ create table weight(
     id int not null auto_increment,
     user_weight int(10) not null,
     input_time DATETIME
-)
+);
