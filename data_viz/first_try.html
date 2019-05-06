@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="/path/to/d3.v5.min.js" charset="utf-8"></script>
+    <script src="/path/to/c3.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart" width="300" height="150"></canvas>
+</body>
+
+</html>
+
+<script>
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['04-30', '05-01', '05-02', '05-03', '05-04'],
+            datasets: [{
+                data: [195, 194, 193, 192, 191],
+                label: "Daily Weight",
+                borderColor: "#3e95cd",
+                fill: false
+            }, {
+                data: [175, 175, 175, 175, 175],
+                label: "Target Weight",
+                borderColor: "#8e5ea2",
+                fill: false
+            }
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    display: true,
+                    stacked: true,
+                    ticks: {
+                        min: 170, // minimum value
+                        max: 200 // maximum value
+                    }
+                }]
+            }
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Daily Weight-loss Performance'
+            }
+        }
+        // }
+    });
+</script>
+
+<style>
+
+</style>
