@@ -1,0 +1,38 @@
+body {
+    background-image: url("../images/run.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.demo-content {
+    padding: 15px;
+    font-size: 18px;
+    background: #dbdfe5;
+    margin-bottom: 15px;
+    opacity: 0.95;
+}
+
+/* .demo-content.bg-alt {
+    background: #abb1b8;
+} */
+
+.main-text {
+    margin-top: 10px;
+}
+
+#fq {
+    font-weight: bold;
+    padding: 5% 5% 0 5%;
+}
+
+#fqa {
+    font-style: italic;
+    text-align: right;
+    padding: 0 5% 0 5%;
+}
+
+#hello {
+    font-weight: bold;
+}
