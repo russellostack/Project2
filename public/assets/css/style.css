@@ -36,3 +36,11 @@ body {
 #hello {
     font-weight: bold;
 }
+
+#fitchart {
+    object-fit: cover;
+    display: block;
+    /* height: 50vh; */
+    margin-left: auto;
+    margin-right: auto;
+}

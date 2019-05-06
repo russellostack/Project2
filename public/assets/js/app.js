@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    var userName = "";
+
     // Random quotation module ================================================
     var Quotes = [{
         quote: "In fitness, there are no short cuts. It involves immense discipline and hard work",
@@ -29,20 +31,17 @@ $(document).ready(function () {
         $("#signInModal").modal("show");
         $("#inputUserName").val("");
         $("#inputPassword").val("");
-        // $("#user-data-input").empty();
-        // console.log("here");
-
     });
 
     // Daily data input card creation:
     $("#signinmodalbtn").click(function () {
         event.preventDefault();
         $("#rfq").empty();
-        $("#user-data-input").empty();
+        $("#user-data").empty();
         $("#signInModal").modal("hide");
-        var userName = $("#inputUserName").val().trim();
+        userName = $("#inputUserName").val().trim();
         var $newRow = $("<div>");
-        $newRow.attr("id", "user-data-input");
+        $newRow.attr("id", "user-data");
         $newRow.addClass("row");
         var $newDiv = $("<div>");
         $newDiv.addClass("col-md-12");
@@ -96,11 +95,11 @@ $(document).ready(function () {
         var newForm4 = $("<form>");
         var divForm4 = $("<div>");
         divForm4.addClass("form-group");
-        var label4 = $("<label>Exercise amount</label>");
+        var label4 = $("<label>Current weight</label>");
         var input4 = $("<input>");
         input4.addClass("form-control");
         input4.attr("id", "input-cur-weight");
-        input4.attr("placeholder", "input anount of exercise you're doing today");
+        input4.attr("placeholder", "input your current weight");
         divForm4.append(label4);
         divForm4.append(input4);
         newForm4.append(divForm4);
@@ -139,6 +138,24 @@ $(document).ready(function () {
         $("#daily-submit").click(function () {
             // event.preventDefault();
             console.log("daily-submit");
+            $("#user-data").empty();
+            // $("#signInModal").modal("hide");
+            // var userName = $("#inputUserName").val().trim();
+            var $newRow = $("<div>");
+            $newRow.attr("id", "user-data");
+            $newRow.addClass("row");
+            var $newDiv = $("<div>");
+            $newDiv.addClass("col-md-12");
+            var $newDiv2 = $("<div>");
+            $newDiv2.addClass("demo-content");
+            $newDiv.append($newDiv2);
+            var $newPar = $("<p>");
+            $newPar.attr("id", "progress");
+            $newPar.text(userName + ", your progress is here:");
+            $newDiv2.append($newPar);
+            $newDiv2.append('<img id="fitchart" class="img-fluid" src="../public/assets/images/fitness-chart.jpg"/>');
+            $newRow.append($newDiv);
+            $(".container").append($newRow);
         });
     });
 
@@ -149,4 +166,3 @@ $(document).ready(function () {
     });
     // =========================================================================
 });
-
