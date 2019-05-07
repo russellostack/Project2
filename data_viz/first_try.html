@@ -6,59 +6,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <!-- <script src="/path/to/d3.v5.min.js" charset="utf-8"></script>
-    <script src="/path/to/c3.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
-    <canvas id="myChart" width="300" height="150"></canvas>
+    <div id="myDiv">
+    </div>
+    <div id=myDiv1>
+    </div>
+    <script>
+        var timeFrame = 7;
+        var timeScale = (timeFrame / timeFrame);
+        var targetWeight = 175;
+        var targetWeightArray = [];
+        for (j = 0; j < timeFrame; j++) {
+            targetWeightArray.push(targetWeight);
+        }
+        var scaleArray = [];
+        for (i = 1; i < timeFrame; i++) {
+            var t = "Day " + (timeScale * i);
+            scaleArray.push(t);
+        }
+        var trace1 = {
+            x: scaleArray,
+            y: targetWeightArray,
+            mode: 'lines+markers+text',
+            type: 'scatter',
+            name: 'Target Weight',
+            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+            textposition: 'top center',
+            textfont: {
+                family: 'Raleway, sans-serif'
+            },
+            marker: { size: 12 }
+        };
+        var trace2 = {
+            x: scaleArray,
+            y: [196, 195, 194, 193, 192, 191],
+            mode: 'lines+markers+text',
+            type: 'scatter',
+            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+            name: 'Daily Weight',
+            textfont: {
+                family: 'Times New Roman'
+            },
+            textposition: 'bottom center',
+            marker: { size: 12 }
+        };
+        var trace3 = {
+            x: scaleArray,
+            y: [2112, 2188, 2425, 1999, 2354, 2186],
+            mode: 'lines+markers+text',
+            type: 'scatter',
+            name: 'Calories In',
+            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+            textposition: 'top center',
+            textfont: {
+                family: 'Raleway, sans-serif'
+            },
+            marker: { size: 12 }
+        };
+        var trace4 = {
+            x: scaleArray,
+            y: [2700, 2900, 1900, 2300, 2300, 2450],
+            mode: 'lines+markers+text',
+            type: 'scatter',
+            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+            name: 'Calories Out',
+            textfont: {
+                family: 'Times New Roman'
+            },
+            textposition: 'bottom center',
+            marker: { size: 12 }
+        };
+        var data = [trace1, trace2];
+        var data1 = [trace3, trace4];
+
+        var layout = {
+            autosize: false,
+            width: 800,
+            height: 400,
+            margin: {
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 100,
+                pad: 4
+            },
+            yaxis: {
+                range: [(targetWeight - 5), 200]
+            },
+            legend: {
+                y: 25,
+                yref: 'paper',
+                font: {
+                    family: 'Arial, sans-serif',
+                    size: 20,
+                    color: 'black',
+                }
+            },
+            title: 'Progress Against Weight Loss Goal'
+        };
+        var layout1 = {
+            autosize: false,
+            width: 800,
+            height: 400,
+            margin: {
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 100,
+                pad: 4
+            },
+            yaxis: {
+                range: [1800, 3000]
+            },
+            legend: {
+                y: 25,
+                yref: 'paper',
+                font: {
+                    family: 'Arial, sans-serif',
+                    size: 20,
+                    color: 'black',
+                }
+            },
+            title: 'Daily Caloric Intake and Output'
+        };
+        Plotly.newPlot('myDiv', data, layout);
+        Plotly.newPlot('myDiv1', data1, layout1);
+
+    </script>
 </body>
 
 </html>
-
-<script>
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['04-30', '05-01', '05-02', '05-03', '05-04'],
-            datasets: [{
-                data: [195, 194, 193, 192, 191],
-                label: "Daily Weight",
-                borderColor: "#3e95cd",
-                fill: false
-            }, {
-                data: [175, 175, 175, 175, 175],
-                label: "Target Weight",
-                borderColor: "#8e5ea2",
-                fill: false
-            }
-            ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    display: true,
-                    stacked: true,
-                    ticks: {
-                        min: 170, // minimum value
-                        max: 200 // maximum value
-                    }
-                }]
-            }
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Daily Weight-loss Performance'
-            }
-        }
-        // }
-    });
-</script>
-
-<style>
-
-</style>
