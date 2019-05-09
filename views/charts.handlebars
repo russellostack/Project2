@@ -1,0 +1,215 @@
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="buttons" class="demo-content">
+          <h1>Fit-or-Fat</h1>
+          <h6>(the name is a subject to change)</h6>
+          <div id="rfq" class="row">
+            <div class="col-md-12">
+              <div id="fitness-quotes" class="demo-content">
+                <h4>Fitness Quote</h4>
+                <p id="fq" class="random-quote"></p>
+                <p id="fqa" class="random-quote-author"></p>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <h2 class="header">Registered Users</h2>
+              <ul>
+                {{#each Users}}
+                <p class="big text">{{id}}. {{username}}<br>
+                  {{/each}}
+              </ul>
+
+            </div>
+          </div>
+          <button type="button" id="signinbtn" class="btn btn-primary btn-lg">Sign in</button>
+          <!-- <p>Or</p> -->
+          <button type="button" id="newuserbnt" class="btn btn-primary btn-lg">Create New User</button>
+          <div class="main-text"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<body>
+    <div id="myDiv">
+    </div>
+    <div id="myDiv1">
+    </div>
+    <script>
+        var timeFrame = 7;
+        var timeScale = (timeFrame / timeFrame);
+        var targetWeight = 175;
+        var targetWeightArray = [];
+        for (j = 0; j < timeFrame; j++) {
+            targetWeightArray.push(targetWeight);
+        }
+        var activityArray = [];
+        for q = 0; q < hbsObject.length; q++ {
+            var 
+        }
+        var scaleArray = [];
+        for (i = 1; i < timeFrame; i++) {
+            var t = "Day " + (timeScale * i);
+            scaleArray.push(t);
+        }
+        var trace1 = {
+            x: scaleArray,
+            y: targetWeightArray,
+            mode: 'lines+markers+text',
+            type: 'scatter',
+            name: 'Target Weight',
+            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+            textposition: 'top center',
+            textfont: {
+                family: 'Raleway, sans-serif'
+            },
+            marker: { size: 12 }
+        };
+        var trace2 = {
+            x: scaleArray,
+            y: [196, 195, 194, 193, 192, 191],
+            mode: 'lines+markers+text',
+            type: 'scatter',
+            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+            name: 'Daily Weight',
+            textfont: {
+                family: 'Times New Roman'
+            },
+            textposition: 'bottom center',
+            marker: { size: 12 }
+        };
+        var trace3 = {
+            x: scaleArray,
+            y: [2112, 2188, 2425, 1999, 2354, 2186],
+            mode: 'lines+markers+text',
+            type: 'scatter',
+            name: 'Calories In',
+            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+            textposition: 'top center',
+            textfont: {
+                family: 'Raleway, sans-serif'
+            },
+            marker: { size: 12 }
+        };
+        var trace4 = {
+            x: scaleArray,
+            y: [2700, 2900, 1900, 2300, 2300, 2450],
+            mode: 'lines+markers+text',
+            type: 'scatter',
+            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+            name: 'Calories Out',
+            textfont: {
+                family: 'Times New Roman'
+            },
+            textposition: 'bottom center',
+            marker: { size: 12 }
+        };
+        var data = [trace1, trace2];
+        var data1 = [trace3, trace4];
+
+        var layout = {
+            autosize: false,
+            width: 800,
+            height: 400,
+            margin: {
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 100,
+                pad: 4
+            },
+            yaxis: {
+                range: [(targetWeight - 5), 200]
+            },
+            legend: {
+                y: 25,
+                yref: 'paper',
+                font: {
+                    family: 'Arial, sans-serif',
+                    size: 20,
+                    color: 'black',
+                }
+            },
+            title: 'Progress Against Weight Loss Goal'
+        };
+        var layout1 = {
+            autosize: false,
+            width: 800,
+            height: 400,
+            margin: {
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 100,
+                pad: 4
+            },
+            yaxis: {
+                range: [1800, 3000]
+            },
+            legend: {
+                y: 25,
+                yref: 'paper',
+                font: {
+                    family: 'Arial, sans-serif',
+                    size: 20,
+                    color: 'black',
+                }
+            },
+            title: 'Daily Caloric Intake and Output'
+        };
+        Plotly.newPlot('myDiv', data, layout);
+        Plotly.newPlot('myDiv1', data1, layout1);
+
+    </script>
+</body>
+
+
+{{!-- <div class="container">
+      <div class="row">
+        <div class="col-8 offset-2">
+          <h1>{{msg}}</h1>
+          <h2>This is our Home Page!</h2>
+          <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+              <label for="example-text">Example Text</label>
+              <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
+                placeholder="Enter Example Text">
+            </div>
+            <div class="form-group">
+              <label for="example-description">Example Description</label>
+              <textarea class="form-control" id="example-description" aria-describedby="example-description"
+                placeholder="Enter Example Description"></textarea>
+            </div>
+            <button id="submit" class="btn btn-primary float-right">Submit</button>
+          </form>
+          <h3>Examples:</h3>
+          <ul id="example-list" class="list-group">
+            {{#each examples}}
+            <li data-id="{{this.id}}" class="list-group-item">
+              <a href="example/{{this.id}}">{{this.text}}</a>
+              <button class="btn btn-danger float-right delete">ｘ</button>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div> --}}
+{{!-- <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="buttons" class="demo-content">
+          <h1>Fit-or-Fat</h1>
+          <h6>(the name is a subject to change)</h6>
+          <button type="button" id="signinbtn" class="btn btn-primary btn-lg">Sign in</button>
+          <!-- <p>Or</p> -->
+          <button type="button" id="newuserbnt" class="btn btn-primary btn-lg">Create New User</button>
+          <div class="main-text"></div>
+        </div>
+      </div>
+    </div> --}}
+
+<!-- Random Fitness Quote -->
+
+
