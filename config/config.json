@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
+    "username": "Trilogy",
+    "password": "123",
     "database": "exercise_db",
     "host": "localhost",
     "dialect": "mysql"
