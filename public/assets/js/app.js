@@ -52,15 +52,15 @@ $(document).ready(function () {
         $newPar.attr("id", "hello");
         $newPar.text("Hello, " + userName + "!");
         $newDiv2.append($newPar);
-        // Adding input form for calories:
+        // Adding input form for foods:
         var newForm = $("<form>");
         var divForm = $("<div>");
         divForm.addClass("form-group");
-        var label1 = $("<label>Today's calories consumption</label>");
+        var label1 = $("<label>Today's food consumption</label>");
         var input1 = $("<input>");
         input1.addClass("form-control");
-        input1.attr("id", "input-cal");
-        input1.attr("placeholder", "input today's calories amount");
+        input1.attr("id", "input-food");
+        input1.attr("placeholder", "input today's food you consumed and the amount");
         divForm.append(label1);
         divForm.append(input1);
         newForm.append(divForm);
