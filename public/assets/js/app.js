@@ -40,66 +40,31 @@ $(document).ready(function () {
         $("#user-input-food").empty();
         $("#sign-in-modal").modal("hide");
         userName = $("#inputUserName").val().trim();
-
-        // Food input ============================================================================================================
-        var foodRow = $("<div>");
-        foodRow.attr("id", "user-input-food");
-        foodRow.addClass("row");
-        var foodDiv = $("<div>");
-        foodDiv.addClass("col-md-6");
-        var newDiv = $("<div>");
-        newDiv.addClass("main-content");
-        var newPar = $("<p>");
-        newPar.attr("id", "hello");
-        newPar.text("Hello, " + userName + "!");
-        newDiv.append(newPar);
-        foodDiv.append(newDiv);
-        foodRow.append(foodDiv);
-        $(".container").append(foodRow);
-
-        // Input form for food type:
-        var foodForm = $("<form>");
-        var foodInputDiv = $("<div>");
-        foodInputDiv.addClass("form-group");
-
-        var labelFoodType = $("<label>Enter types of food you ate today</label>");
-        var inputFoodType = $("<input>");
-        inputFoodType.addClass("form-control");
-        inputFoodType.attr("id", "input-food-type");
-        inputFoodType.attr("placeholder", "food type, etc. chicken");
-
-        var labelFoodAmt = $("<label>Enter amount of food you ate today</label>");
-        labelFoodAmt.addClass("mt-3");
-        var inputFoodAmt = $("<input>");
-        inputFoodAmt.addClass("form-control");
-        inputFoodAmt.attr("id", "input-food-amount");
-        inputFoodAmt.attr("placeholder", "food amount, g");
-
-        foodInputDiv.append(labelFoodType);
-        foodInputDiv.append(inputFoodType);
-        foodInputDiv.append(labelFoodAmt);
-        foodInputDiv.append(inputFoodAmt);
-        foodForm.append(foodInputDiv);
-        newDiv.append(foodForm);
-
-        // newForm.append(divForm);
-        // $newDiv2.append(newForm);
-
-        // Input form for food amount:
-        // var newForm_ = $("<form>");
-        // var divForm_ = $("<div>");
-        // divForm_.addClass("form-group");
-        // var label0 = $("<label>Today's calories consumption</label>");
-        // var input0 = $("<input>");
-        // input0.addClass("form-control");
-        // input0.attr("id", "input-cal");
-        // input0.attr("placeholder", "input today's calories amount");
-        // divForm_.append(label0);
-        // divForm_.append(input0);
-        // newForm_.append(divForm_);
-        // $newDiv2.append(newForm_);
-        //==========================================================================================================
-
+        var $newRow = $("<div>");
+        $newRow.attr("id", "user-data");
+        $newRow.addClass("row");
+        var $newDiv = $("<div>");
+        $newDiv.addClass("col-md-12");
+        var $newDiv2 = $("<div>");
+        $newDiv2.addClass("demo-content");
+        $newDiv.append($newDiv2);
+        var $newPar = $("<p>");
+        $newPar.attr("id", "hello");
+        $newPar.text("Hello, " + userName + "!");
+        $newDiv2.append($newPar);
+        // Adding input form for foods:
+        var newForm = $("<form>");
+        var divForm = $("<div>");
+        divForm.addClass("form-group");
+        var label1 = $("<label>Today's food consumption</label>");
+        var input1 = $("<input>");
+        input1.addClass("form-control");
+        input1.attr("id", "input-food");
+        input1.attr("placeholder", "input today's food you consumed and the amount");
+        divForm.append(label1);
+        divForm.append(input1);
+        newForm.append(divForm);
+        $newDiv2.append(newForm);
         // Adding input form for exercise type:
         // var newForm2 = $("<form>");
         // var divForm2 = $("<div>");
