@@ -7,6 +7,9 @@ var db = require("./models");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+app.get('/login', function (req, res) {
+  res.send('Welcome to PP with SQLize');
+})
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
