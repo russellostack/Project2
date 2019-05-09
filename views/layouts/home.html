@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Fit-or-Fat</title>
-    <link rel='icon' href='../public/assets/images/apple-touch-icon.png' type='image/x-icon'>
+    <link rel='icon' href='../public/assets/images/android-chrome-96x96.png' sizes="32x32" type='image/png'>
     <!-- Bootstrap CSS file -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -17,12 +17,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div id = "buttons" class="demo-content">
+                <div id = "buttons" class="main-content">
                     <h1>Fit-or-Fat</h1>
                     <h6>(the name is a subject to change)</h6>
-                    <button type="button" id="signinbtn" class="btn btn-primary btn-lg">Sign in</button>
+                    <button type="button" id="sign-in-btn" class="btn btn-primary btn-lg">Sign in</button>
                     <!-- <p>Or</p> -->
-                    <button type="button" id="newuserbnt" class="btn btn-primary btn-lg">Create New User</button>
+                    <button type="button" id="new-user-bnt" class="btn btn-primary btn-lg">Create New User</button>
                     <div class="main-text"></div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <!-- Random Fitness Quote -->
         <div id = "rfq" class="row">
             <div class="col-md-12">
-                <div id="fitness-quotes" class="demo-content">
+                <div id="fitness-quotes" class="main-content">
                     <p id="fq" class="random-quote"></p>
                     <p id="fqa" class="random-quote-author"></p>
                 </div>
@@ -41,17 +41,17 @@
         <!--Row with two columns divided in 1:2 ratio-->
         <!-- <div class="row">
             <div class="col-md-4">
-                <div class="demo-content">.col-md-4</div>
+                <div class="main-content">.col-md-4</div>
             </div>
             <div class="col-md-8">
-                <div class="demo-content bg-alt">.col-md-8</div>
+                <div class="main-content bg-alt">.col-md-8</div>
             </div>
         </div> -->
 
     </div>
 
     <!-- Modal for Sing in -->
-    <div id="signInModal" class="modal fade" data-backdrop="static" tabindex="-1">
+    <div id="sign-in-modal" class="modal fade" data-backdrop="static" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -85,7 +85,7 @@
     </div>
 
     <!-- Modal for Creating New User -->
-    <div id="newUserModal" class="modal fade" data-backdrop="static" tabindex="-1">
+    <div id="new-user-modal" class="modal fade" data-backdrop="static" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -126,14 +126,14 @@
     </div>
 
     <!-- New Modal -->
-    <div id="newModal" class="modal fade" data-backdrop="static" tabindex="-1">
+    <!-- <div id="newModal" class="modal fade" data-backdrop="static" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Input today's activity</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body"> -->
                     <!-- <form>
                         <div class="form-group">
                             <label>User name</label>
@@ -157,14 +157,14 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form> -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <!-- </div> -->
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                </div>
-            </div>
+                <!-- </div> -->
+            <!-- </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- JS files: jQuery, Popper.js, Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
