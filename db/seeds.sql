@@ -1,8 +1,9 @@
-INSERT INTO users (username, `password`, starting_weight, target_weight) VALUES ('Lance', 123, 195, 175);
-INSERT INTO users (username, `password`, starting_weight, target_weight) VALUES ('Igor', 123, 180, 165);
-INSERT INTO users (username, `password`, starting_weight, target_weight) VALUES ('Russell', 123, 180, 170);
-INSERT INTO users (username, `password`, starting_weight, target_weight) VALUES ('Keith', 123, 190, 175);
 
+INSERT INTO users (username, `password`, starting_weight, target_weight, createdAt, updatedAt) VALUES ('lance', 123, 195, 175, '2019-04-30 13:00:00', '2019-04-30 13:00:00');
+INSERT INTO users (username, `password`, starting_weight, target_weight, createdAt, updatedAt) VALUES ('igor', 123, 180, 165, '2019-04-30 13:00:00', '2019-04-30 13:00:00');
+INSERT INTO users (username, `password`, starting_weight, target_weight, createdAt, updatedAt) VALUES ('russell', 123, 180, 170, '2019-04-30 13:00:00', '2019-04-30 13:00:00');
+INSERT INTO users (username, `password`, starting_weight, target_weight, createdAt, updatedAt) VALUES ('keith', 123, 190, 175, '2019-04-30 13:00:00', '2019-04-30 13:00:00');
+SELECT * FROM users;
 INSERT INTO user_weight (user_id, user_weight, input_time) VALUES (1,'195', '2019-04-30 13:00:00');
 INSERT INTO user_weight (user_id, user_weight, input_time) VALUES (1,'194', '2019-05-01 13:00:00');
 INSERT INTO user_weight (user_id, user_weight, input_time) VALUES (1,'193', '2019-05-02 13:00:00');

@@ -1,5 +1,6 @@
 drop database if exists exercise_db;
 create database exercise_db;
+
 use exercise_db;
 
 drop table if exists users;
@@ -9,6 +10,8 @@ create table users(
     `password` varchar(255) not null,
     starting_weight int(10) not null,
     target_weight int(10) not null,
+    created_at datetime not null,
+    updated_at datetime not null,
     primary key (id)
 );
 drop table if exists calories;
