@@ -27,24 +27,26 @@
         </div>
         <!-- FOOD AND ACTIVITY INPUT -->
         <div class="row" id="user-input">
-            <div id="food-input" class="col-md-6 main-content">
+            <!-- food input -->
+            <div id="food-input-div" class="col-md-6 main-content">
                 <h4 class="text-center">What did you eat today?</h4>
                 <form id="food-input-form">
                     <div class="form-group mt-3">
-                        <label for="food-type-input">Enter types of food you ate today</label>
-                        <input type="text" class="form-control" id="food-type-input"
-                            placeholder="food type, for example 'chicken'">
-                        <div class="form-group mt-3">
+                        <label for="food-input">Enter types and amounts of food you ate today</label>
+                        <input type="text" class="form-control" id="food-input"
+                            placeholder="for example 'chicken 200 grams'">
+                        <!-- <div class="form-group mt-3">
                             <label for="food-amt-input">Enter amount of food you ate today</label>
-                            <input type="text" class="form-control" id="food-amt-input" placeholder="grams">
-                        </div>
-                        <div class="col text-center">
+                            <input type="number" class="form-control" id="food-amt-input" placeholder="grams">
+                        </div> -->
+                        <div class="col text-center mt-3">
                             <button id="food-submit" class="btn btn-primary btn-lg">Submit</button>
                         </div>
                     </div>
                 </form>
             </div>
-            <div id="activity-input" class="col-md-6 main-content">
+            <!-- activity input -->
+            <div id="activity-input-div" class="col-md-6 main-content">
                 <h4 class="text-center">What did you do today?</h4>
                 <form id="activity-input-form">
                     <div class="form-group mt-3">
@@ -53,9 +55,9 @@
                             placeholder="type of activity, for example 'running'">
                         <div class="form-group mt-3">
                             <label for="activity-amt-input">Enter amount of activity you did today</label>
-                            <input type="text" class="form-control" id="activity-amt-input" placeholder="">
+                            <input type="number" class="form-control" id="activity-amt-input" placeholder="">
                         </div>
-                        <div class="col text-center mt-3">
+                        <div class="col text-center">
                             <button id="activity-submit" class="btn btn-primary btn-lg">Submit</button>
                         </div>
                     </div>
@@ -69,10 +71,10 @@
                 <h4 class="text-center">What is yor current weight?</h4>
                 <form id="weight-input-form">
                     <div class="form-group">
-                        <label for="weight-input">Enter types of food you ate today</label>
-                        <input type="text" class="form-control" id="weight-input" placeholder="kg">
+                        <label for="weight-input">Enter your current weight</label>
+                        <input type="number" class="form-control" id="weight-input" placeholder="kg">
 
-                        <div class="col text-center">
+                        <div class="col text-center mt-3">
                             <button id="weight-submit" class="btn btn-primary btn-lg">Submit</button>
                         </div>
                     </div>
