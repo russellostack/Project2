@@ -14,157 +14,165 @@
               </div>
             </div>
             <div class="col-md-12">
-              <h2 class="header">Registered Users</h2>
-              <ul>
-                {{#each Users}}
-                <p class="big text">{{id}}. {{username}}<br>
-                  {{/each}}
-              </ul>
-
+              <h2 class="header">Recent Workouts</h2>
             </div>
+            <div class="row">
+              <div class="col-md-3">Workout Date</div>
+              <div class="col-md-3">Type</div>
+              <div class="col-md-3">Time</div>
+              <div class="col-md-3">Calories</div>
+            </div>
+            {{#each Activities}}
+            <div class="row">
+              <div class="col-md-6">{{createdAt}}</div>
+              <div class="col-md-6">{{activity_name}}</div>
+              <div class="col-md-6">{{activity_quantity}}</div>
+              <div class="col-md-6">{{total_cal_burn}}</div>
+            </div>
+            {{/each}}
           </div>
-          <button type="button" id="signinbtn" class="btn btn-primary btn-lg">Sign in</button>
-          <!-- <p>Or</p> -->
-          <button type="button" id="newuserbnt" class="btn btn-primary btn-lg">Create New User</button>
-          <div class="main-text"></div>
         </div>
+        <button type="button" id="signinbtn" class="btn btn-primary btn-lg">Sign in</button>
+        <!-- <p>Or</p> -->
+        <button type="button" id="newuserbnt" class="btn btn-primary btn-lg">Create New User</button>
+        <div class="main-text"></div>
       </div>
     </div>
   </div>
 </div>
+</div>
 
-<body>
-    <div id="myDiv">
-    </div>
-    <div id="myDiv1">
-    </div>
-    <script>
-        var timeFrame = 7;
-        var timeScale = (timeFrame / timeFrame);
-        var targetWeight = 175;
-        var targetWeightArray = [];
-        for (j = 0; j < timeFrame; j++) {
-            targetWeightArray.push(targetWeight);
-        }
-        var activityArray = [];
-        for q = 0; q < hbsObject.length; q++ {
-            var 
-        }
-        var scaleArray = [];
-        for (i = 1; i < timeFrame; i++) {
-            var t = "Day " + (timeScale * i);
-            scaleArray.push(t);
-        }
-        var trace1 = {
-            x: scaleArray,
-            y: targetWeightArray,
-            mode: 'lines+markers+text',
-            type: 'scatter',
-            name: 'Target Weight',
-            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
-            textposition: 'top center',
-            textfont: {
-                family: 'Raleway, sans-serif'
-            },
-            marker: { size: 12 }
-        };
-        var trace2 = {
-            x: scaleArray,
-            y: [196, 195, 194, 193, 192, 191],
-            mode: 'lines+markers+text',
-            type: 'scatter',
-            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
-            name: 'Daily Weight',
-            textfont: {
-                family: 'Times New Roman'
-            },
-            textposition: 'bottom center',
-            marker: { size: 12 }
-        };
-        var trace3 = {
-            x: scaleArray,
-            y: [2112, 2188, 2425, 1999, 2354, 2186],
-            mode: 'lines+markers+text',
-            type: 'scatter',
-            name: 'Calories In',
-            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
-            textposition: 'top center',
-            textfont: {
-                family: 'Raleway, sans-serif'
-            },
-            marker: { size: 12 }
-        };
-        var trace4 = {
-            x: scaleArray,
-            y: [2700, 2900, 1900, 2300, 2300, 2450],
-            mode: 'lines+markers+text',
-            type: 'scatter',
-            text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
-            name: 'Calories Out',
-            textfont: {
-                family: 'Times New Roman'
-            },
-            textposition: 'bottom center',
-            marker: { size: 12 }
-        };
-        var data = [trace1, trace2];
-        var data1 = [trace3, trace4];
+{{!-- <body>
+  <div id="myDiv">
+  </div>
+  <div id="myDiv1">
+  </div>
+  <script>
+    var timeFrame = 7;
+    var timeScale = (timeFrame / timeFrame);
+    var targetWeight = 175;
+    var targetWeightArray = [];
+    for (j = 0; j < timeFrame; j++) {
+      targetWeightArray.push(targetWeight);
+    }
+    var activityArray = [];
+    for q = 0; q < hbsObject.length; q++ {
+      var
+    }
+    var scaleArray = [];
+    for (i = 1; i < timeFrame; i++) {
+      var t = "Day " + (timeScale * i);
+      scaleArray.push(t);
+    }
+    var trace1 = {
+      x: scaleArray,
+      y: targetWeightArray,
+      mode: 'lines+markers+text',
+      type: 'scatter',
+      name: 'Target Weight',
+      text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+      textposition: 'top center',
+      textfont: {
+        family: 'Raleway, sans-serif'
+      },
+      marker: { size: 12 }
+    };
+    var trace2 = {
+      x: scaleArray,
+      y: [196, 195, 194, 193, 192, 191],
+      mode: 'lines+markers+text',
+      type: 'scatter',
+      text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+      name: 'Daily Weight',
+      textfont: {
+        family: 'Times New Roman'
+      },
+      textposition: 'bottom center',
+      marker: { size: 12 }
+    };
+    var trace3 = {
+      x: scaleArray,
+      y: [2112, 2188, 2425, 1999, 2354, 2186],
+      mode: 'lines+markers+text',
+      type: 'scatter',
+      name: 'Calories In',
+      text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+      textposition: 'top center',
+      textfont: {
+        family: 'Raleway, sans-serif'
+      },
+      marker: { size: 12 }
+    };
+    var trace4 = {
+      x: scaleArray,
+      y: [2700, 2900, 1900, 2300, 2300, 2450],
+      mode: 'lines+markers+text',
+      type: 'scatter',
+      text: ['04-29-19', '04-30-19', '05-01-19', '05-02-19', '05-03-19', '05-04-19'],
+      name: 'Calories Out',
+      textfont: {
+        family: 'Times New Roman'
+      },
+      textposition: 'bottom center',
+      marker: { size: 12 }
+    };
+    var data = [trace1, trace2];
+    var data1 = [trace3, trace4];
 
-        var layout = {
-            autosize: false,
-            width: 800,
-            height: 400,
-            margin: {
-                l: 50,
-                r: 50,
-                b: 100,
-                t: 100,
-                pad: 4
-            },
-            yaxis: {
-                range: [(targetWeight - 5), 200]
-            },
-            legend: {
-                y: 25,
-                yref: 'paper',
-                font: {
-                    family: 'Arial, sans-serif',
-                    size: 20,
-                    color: 'black',
-                }
-            },
-            title: 'Progress Against Weight Loss Goal'
-        };
-        var layout1 = {
-            autosize: false,
-            width: 800,
-            height: 400,
-            margin: {
-                l: 50,
-                r: 50,
-                b: 100,
-                t: 100,
-                pad: 4
-            },
-            yaxis: {
-                range: [1800, 3000]
-            },
-            legend: {
-                y: 25,
-                yref: 'paper',
-                font: {
-                    family: 'Arial, sans-serif',
-                    size: 20,
-                    color: 'black',
-                }
-            },
-            title: 'Daily Caloric Intake and Output'
-        };
-        Plotly.newPlot('myDiv', data, layout);
-        Plotly.newPlot('myDiv1', data1, layout1);
-
-    </script>
-</body>
+    var layout = {
+      autosize: false,
+      width: 800,
+      height: 400,
+      margin: {
+        l: 50,
+        r: 50,
+        b: 100,
+        t: 100,
+        pad: 4
+      },
+      yaxis: {
+        range: [(targetWeight - 5), 200]
+      },
+      legend: {
+        y: 25,
+        yref: 'paper',
+        font: {
+          family: 'Arial, sans-serif',
+          size: 20,
+          color: 'black',
+        }
+      },
+      title: 'Progress Against Weight Loss Goal'
+    };
+    var layout1 = {
+      autosize: false,
+      width: 800,
+      height: 400,
+      margin: {
+        l: 50,
+        r: 50,
+        b: 100,
+        t: 100,
+        pad: 4
+      },
+      yaxis: {
+        range: [1800, 3000]
+      },
+      legend: {
+        y: 25,
+        yref: 'paper',
+        font: {
+          family: 'Arial, sans-serif',
+          size: 20,
+          color: 'black',
+        }
+      },
+      title: 'Daily Caloric Intake and Output'
+    };
+    Plotly.newPlot('myDiv', data, layout);
+    Plotly.newPlot('myDiv1', data1, layout1);
+  </script>
+</body> --}}
 
 
 {{!-- <div class="container">
@@ -211,5 +219,3 @@
     </div> --}}
 
 <!-- Random Fitness Quote -->
-
-

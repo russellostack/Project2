@@ -14,8 +14,17 @@ module.exports = function(sequelize, DataTypes) {
        notEmpty: true, 
        isNumeric: true,
        isInt: true
-     }
-
+     },
+     createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      notEmpty: true
+    },
+    // updatedAt: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false,
+    //   notEmpty: true
+    // }
 });
 return Activities;
 };
