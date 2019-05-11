@@ -14,16 +14,42 @@ module.exports = function (app) {
     });
   });
 
-
-  app.get("/api/users/;", function (req, res) {
+  //get user activities for charts page
+  app.get("/api/activities/:user_id", function (req, res) {
     db.activities.findAll({
        where: 
-      { id: req.params.id }
+      { id: req.params.user_id }
      }).then(function (data) {
       var hbsObject = {
-        Users: data
+        Activities: data
       };
-      res.render("index", hbsObject);
+      res.render("charts", hbsObject);
+    });
+  });
+
+  // get user_calories for charts page
+  app.get("/api/calories/:user_id", function(req,res){
+    db.calories.findAll({
+      where: 
+      {id: req.params.user_id}
+    }).then(function(data){
+      var hbsObject = {
+        calories: data
+      };
+      res.render("charts", hbsObject);
+    });
+  });
+
+  //get user_weight for charts page
+  app.get("/api/user_weight/:user_id", function(req,res){
+    db.user_weight.findAll({
+      where:
+      {user_ud: req.params.user_id};
+    }).then(function(data){
+      var hbsObject = {
+        user_weight: data
+      };
+      res.render("charts", hbsObject);
     });
   });
 
