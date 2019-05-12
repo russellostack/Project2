@@ -1,10 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
   var Users = sequelize.define("Users", {
-    id: {
+    user_id: {
       type: DataTypes.INTEGER,
-      allowNull:false,
+      allowNull: false,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
+      notEmpty: true
     },
     username: {
       type: DataTypes.STRING,
@@ -14,14 +15,14 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
-    // password: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   notEmpty: true,
-    //   validate: {
-    //     len: [6]
-    //   }
-    // },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      notEmpty: true,
+      validate: {
+        len: [6]
+      }
+    },
     starting_weight: {
       type: DataTypes.INTEGER,
       isNumeric: true,
@@ -33,17 +34,8 @@ module.exports = function (sequelize, DataTypes) {
       isNumeric: true,
       isInt: true,
       notEmpty: true
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      notEmpty: true
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      notEmpty: true
     }
   });
-  return Users;
+
+return Users;
 };
