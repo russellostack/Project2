@@ -44,7 +44,7 @@ module.exports = function (app) {
   app.get("/api/user_weight/:user_id", function(req,res){
     db.user_weight.findAll({
       where:
-      {user_ud: req.params.user_id};
+      {user_ud: req.params.user_id},
     }).then(function(data){
       var hbsObject = {
         user_weight: data
