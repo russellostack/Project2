@@ -14,10 +14,7 @@ module.exports = function (app) {
     });
   });
 
-  //get user activities, user calories, and user weight for charts page
-  app.get("/api/charts/:user_id", function (req, res) {
-
-    // find all user activities
+  app.get("/api/activities/:user_id", function (req, res) {
     db.Activities.findAll({
       where:
         { user_id: req.params.user_id }
@@ -25,10 +22,18 @@ module.exports = function (app) {
       var activities_hbsObject = {
         Activities: data
       };
+      var totalCalories = 0;
+      for (var i = 0; i < data.length; i++) {
+        totalCalories = (totalCalories + parseInt(data[i].total_cal_burn));
+      }
+      console.log("here's your total calories expended over the past five days " + totalCalories);
       res.json(data);
     });
   });
-    app.get("/api/charts/:user_id", function (req, res) {
+
+  //get user activities, user calories, and user weight for charts page
+
+  app.get("/api/calories/:user_id", function (req, res) {
     // find all user calories
     db.Calories.findAll({
       where:
@@ -40,7 +45,7 @@ module.exports = function (app) {
       res.json(data);
     });
   });
-    app.get("/api/charts/:user_id", function (req, res) {
+    app.get("/api/weights/:user_id", function (req, res) {
     //find all user weight
     db.Userweights.findAll({
       where:
@@ -52,6 +57,7 @@ module.exports = function (app) {
       res.json(data);
     });
   });
+  
     //new user api post
     app.post("/api/input", function (req, res) {
       db.users.create({
