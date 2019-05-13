@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fit-or-Fat</title>
     <link rel='icon' href='../public/assets/images/android-chrome-96x96.png' sizes="32x32" type='image/png'>
     <!-- Bootstrap CSS file -->
@@ -19,35 +20,48 @@
         <div class="row">
             <div class="col-md-12">
                 <div id="buttons" class="main-content">
-                    <h1>Fit-or-Fat</h1>
-                    <h6>(the name is a subject to change)</h6>
-                    <button type="button" id="sign-out-btn" class="btn btn-primary btn-lg">Sign out</button>
+                    <h1 class="d-inline display-3">Fit-or-Fat <span class="h1">weight loss tracker</span></h1>
+                    <div class="main-buttons ">
+                        <button type="button" id="sign-out-btn" class="btn btn-primary btn-lg">Sign out</button>
+                    </div>
                 </div>
             </div>
         </div>
+
         <!-- FOOD AND ACTIVITY INPUT -->
         <div class="row" id="user-input">
             <!-- food input -->
-            <div id="food-input-div" class="col-md-6 main-content">
-                <h4 class="text-center">What did you eat today?</h4>
+            <div id="food-input-div" class="col-md-7 main-content">
+                <h4 class="text-center display-4">What did you eat today?</h4>
                 <form id="food-input-form">
                     <div class="form-group mt-3">
-                        <label for="food-input">Enter types and amounts of food you ate today</label>
+                        <label for="food-input">Enter types and amount of food you ate today</label>
                         <input type="text" class="form-control" id="food-input"
                             placeholder="for example 'chicken 200 grams'">
-                        <!-- <div class="form-group mt-3">
-                            <label for="food-amt-input">Enter amount of food you ate today</label>
-                            <input type="number" class="form-control" id="food-amt-input" placeholder="grams">
-                        </div> -->
                         <div class="col text-center mt-3">
                             <button id="food-submit" class="btn btn-primary btn-lg">Submit</button>
                         </div>
                     </div>
                 </form>
             </div>
+            <!-- food picture -->
+            <div id="activity-input-div" class="col-md-5 main-content d-none d-md-block">
+                <div class="box">
+                    <img src="../public/assets/images/food.jpeg" class="img-fluid img-thumbnail" alt="burger">
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="user-input">
+            <!-- activity picture -->
+            <div id="activity-input-div" class="col-md-5 main-content d-none d-md-block">
+                <div class="box">
+                    <img src="../public/assets/images/exercise.jpg" class="img-fluid img-thumbnail" alt="burger">
+                </div>
+            </div>
             <!-- activity input -->
-            <div id="activity-input-div" class="col-md-6 main-content">
-                <h4 class="text-center">What did you do today?</h4>
+            <div id="activity-input-div" class="col-md-7 main-content">
+                <h4 class="text-center display-4">Did any exercise today?</h4>
                 <form id="activity-input-form">
                     <div class="form-group mt-3">
                         <label for="activity-type-input">Enter type of activity you did today</label>
@@ -66,19 +80,70 @@
         </div>
 
         <!-- WEIGHT INPUT -->
-        <div class="row" id="user-input-2">
-            <div id="weight-form" class="col-md-6 main-content">
-                <h4 class="text-center">What is yor current weight?</h4>
+        <div class="row" id="user-input-weight">
+            <div id="weight-form" class="col-md-7 main-content">
+                <h4 class="text-center display-4">What is your current weight?</h4>
                 <form id="weight-input-form">
                     <div class="form-group">
                         <label for="weight-input">Enter your current weight</label>
                         <input type="number" class="form-control" id="weight-input" placeholder="kg">
 
                         <div class="col text-center mt-3">
-                            <button id="weight-submit" class="btn btn-primary btn-lg">Submit</button>
+                            <button id="weight-submit" class="btn btn-primary btn-lg">Show dashboard</button>
                         </div>
                     </div>
                 </form>
+            </div>
+            <!-- scale picture -->
+            <div id="activity-input-div" class="col-md-5 main-content d-none d-md-block">
+                <div class="box">
+                    <img src="../public/assets/images/scale.png" class="img-fluid img-thumbnail" alt="burger">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="main-footer" class="bg-dark fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center py-2">
+                    <button id="footer-btn" class="btn btn-primary" data-toggle="modal"
+                        data-target="#contactModal">KIL.R Squad</button>
+                    <p id="copyright">Copyright &copy;
+                        <span id="year"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TEAM MODAL -->
+    <div class="modal fade" id="contactModal" role="dialog" data-backdrop="static" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">This app coded by KIL.R Squad:</h5>
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h2><span class="h1 killer">K</span>eith Hemsoth</h2>
+                        </li>
+                        <li class="list-group-item">
+                            <h2><span class="h1 killer">I</span>gor Guba</h2>
+                        </li>
+                        <li class="list-group-item">
+                            <h2><span class="h1 killer">L</span>ance Godard</h2>
+                        </li>
+                        <li class="list-group-item">
+                            <h2><span class="h1 killer">R</span>ussell Stack</h2>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -94,6 +159,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="../public/assets/js/app.js" type="text/javascript"></script>
+    <script>
+        // Get the current year for the copyright
+        $('#year').text(new Date().getFullYear());
+    </script>
 </body>
 
 </html>

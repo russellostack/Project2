@@ -4,15 +4,33 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.container {
+    /* min-height: 100%;
+    position: relative; */
+    /* padding-bottom: 60px; */
 }
 
 .main-content {
     padding: 15px;
-    font-size: 18px;
+    /* font-size: 18px; */
     background: #dbdfe5;
     margin-bottom: 15px;
     opacity: 0.95;
 }
+
+#new-user-bnt, #sign-out-btn {
+    margin-left: 0.5rem;
+}
+
+/* .main-buttons {
+    float: right;
+    margin: 2rem;
+} */
 
 .col-md-6.main-content {
     /* margin-left: 10px;
@@ -34,14 +52,20 @@ body {
 
 #fq {
     font-weight: bold;
-    padding: 5% 5% 0 5%;
+    padding: 2%;
+    margin-bottom: 0;
 }
 
 #fqa {
-    font-style: italic;
-    text-align: right;
-    padding: 0 5% 0 5%;
+    /* font-style: italic;
+    text-align: right; */
+    padding: 2%;
+    font-weight: bold;
 }
+
+/* #fitness-quotes {
+    padding: 5%;
+} */
 
 #hello {
     font-weight: bold;
@@ -53,6 +77,34 @@ body {
     /* height: 50vh; */
     margin-left: auto;
     margin-right: auto;
+}
+
+footer {
+    color: #fff;
+    opacity: 0.9;
+}
+
+#copyright {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+#footer-btn {
+    margin-top: 0.5rem;
+}
+
+.killer {
+    font-weight: bold;
+    color: #007bff;
+}
+
+#user-input-weight {
+    margin-bottom: 90px;
+}
+
+#contactModal .modal-header {
+    color: whitesmoke;
+    background-color: #007bff;
 }
 
 /* #left-form {

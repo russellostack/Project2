@@ -10,7 +10,44 @@ $(document).ready(function () {
     {
         quote: "Time and health are two precious assets that we don't recognize and appreciate until they have been depleted",
         author: "Denis Waitley"
-    }];
+    },
+    {
+        quote: "For me, fitness is not just about hitting the gym; it is also about an inner happiness and an overall well-being",
+        author: "Rakul Preet Singh"
+    },
+    {
+        quote: "Fitness is not about being better than someone else... It's about being better than you used to be",
+        author: "Khloe Kardashian"
+    },
+    {
+        quote: "Fitness helps me think better, feel better, and move better",
+        author: "Jason Winston George"
+    },
+    {
+        quote: "True enjoyment comes from activity of the mind and exercise of the body; the two are ever united",
+        author: "Wilhelm von Humboldt"
+    },
+    {
+        quote: "A muscle is like a car. If you want it to run well early in the morning, you have to warm it up",
+        author: "Florence Griffith Joyner"
+    },
+    {
+        quote: "You can always improve your fitness if you keep training",
+        author: "Pastor Maldonado"
+    },
+    {
+        quote: "It's so easy to lose your fitness and so hard to gain it back",
+        author: "Alex Morgan"
+    },
+    {
+        quote: "You can't be fat and fast, too; so lift, run, diet and work",
+        author: "Hank Stram"
+    },
+    {
+        quote: "For me, fitness is a part of my everyday life. But fitness does not mean having big muscles; it means being active, quick, and flexible. It can be defined in many terms",
+        author: "Varun Dhawan"
+    }
+    ];
     var rn;
 
     randomNumberGenerator();
@@ -25,46 +62,79 @@ $(document).ready(function () {
     // =========================================================================
 
     // Click events ============================================================
-    // Signing in:
+    // Signing in button:
     $("#sign-in-btn").click(function () {
         event.preventDefault();
         $("#sign-in-modal").modal("show");
         $("#inputUserName").val("");
         $("#inputPassword").val("");
+
+        // When "sign in" MODAL is ready - input validation:
+        $("#sign-in-modal").ready(function () {
+            console.log("validator");
+            $("#signinmodalbtn").click(function () {
+                event.preventDefault();
+                var input = $("#inputUserName");
+                var form = $("#sign-in-modal-form");
+                if (input[0].checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.addClass("was-validated");
+            });
+        });
     });
 
-    // Daily data input card creation:
-    $("#signinmodalbtn").click(function () {
+    // "Create new user" button click event:
+    $("#new-user-bnt").click(function () {
         event.preventDefault();
-        $("#rfq").empty();
-        $("#user-input-food").empty();
-        $("#sign-in-modal").modal("hide");
-        userName = $("#inputUserName").val().trim();
-        var $newRow = $("<div>");
-        $newRow.attr("id", "user-data");
-        $newRow.addClass("row");
-        var $newDiv = $("<div>");
-        $newDiv.addClass("col-md-12");
-        var $newDiv2 = $("<div>");
-        $newDiv2.addClass("demo-content");
-        $newDiv.append($newDiv2);
-        var $newPar = $("<p>");
-        $newPar.attr("id", "hello");
-        $newPar.text("Hello, " + userName + "!");
-        $newDiv2.append($newPar);
+        $("#new-user-modal").modal("show");
+
+        // When "create new user" MODAL is ready - input validation:
+        $("#new-user-modal").ready(function () {
+            console.log("validator");
+            $("#newusermodalbtn").click(function () {
+                event.preventDefault();
+                var input = $("#inputNewUserName");
+                var form = $("#new-user-modal-form");
+                if (input[0].checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.addClass("was-validated");
+            });
+        });
+    });
+
+    // =========================================================================
+});
+
+        // userName = $("#inputUserName").val().trim();
+        // var $newRow = $("<div>");
+        // $newRow.attr("id", "user-data");
+        // $newRow.addClass("row");
+        // var $newDiv = $("<div>");
+        // $newDiv.addClass("col-md-12");
+        // var $newDiv2 = $("<div>");
+        // $newDiv2.addClass("demo-content");
+        // $newDiv.append($newDiv2);
+        // var $newPar = $("<p>");
+        // $newPar.attr("id", "hello");
+        // $newPar.text("Hello, " + userName + "!");
+        // $newDiv2.append($newPar);
         // Adding input form for foods:
-        var newForm = $("<form>");
-        var divForm = $("<div>");
-        divForm.addClass("form-group");
-        var label1 = $("<label>Today's food consumption</label>");
-        var input1 = $("<input>");
-        input1.addClass("form-control");
-        input1.attr("id", "input-food");
-        input1.attr("placeholder", "input today's food you consumed and the amount");
-        divForm.append(label1);
-        divForm.append(input1);
-        newForm.append(divForm);
-        $newDiv2.append(newForm);
+        // var newForm = $("<form>");
+        // var divForm = $("<div>");
+        // divForm.addClass("form-group");
+        // var label1 = $("<label>Today's food consumption</label>");
+        // var input1 = $("<input>");
+        // input1.addClass("form-control");
+        // input1.attr("id", "input-food");
+        // input1.attr("placeholder", "input today's food you consumed and the amount");
+        // divForm.append(label1);
+        // divForm.append(input1);
+        // newForm.append(divForm);
+        // $newDiv2.append(newForm);
         // Adding input form for exercise type:
         // var newForm2 = $("<form>");
         // var divForm2 = $("<div>");
@@ -156,12 +226,3 @@ $(document).ready(function () {
         //     $newRow.append($newDiv);
         //     $(".container").append($newRow);
         // });
-    });
-
-    // Creating new user
-    $("#newuserbnt").click(function () {
-        event.preventDefault();
-        $("#newUserModal").modal("show");
-    });
-    // =========================================================================
-});
