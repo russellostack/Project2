@@ -1,7 +1,7 @@
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    res.render("home")
+    res.render("index")
   });
 
   // Load example page and pass in an example by id
@@ -10,11 +10,11 @@ module.exports = function (app) {
   });
 
   app.get("/charts", function(req, res){
-    res.render("charts");
+    res.render("layouts/charts");
   })
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
-    res.render("/layouts/404");
+    res.render("layouts/404");
   });
 };
