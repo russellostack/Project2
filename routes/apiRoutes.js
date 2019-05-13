@@ -10,7 +10,7 @@ module.exports = function (app) {
         Users: data
       };
       console.log(data)
-      res.render("index", hbsObject);
+      res.json(data);
     });
   });
 
@@ -18,36 +18,38 @@ module.exports = function (app) {
   app.get("/api/charts/:user_id", function (req, res) {
 
     // find all user activities
-    db.activities.findAll({
+    db.Activities.findAll({
       where:
-        { id: req.params.user_id }
+        { user_id: req.params.user_id }
     }).then(function (data) {
       var activities_hbsObject = {
         Activities: data
       };
-      res.render("charts", activities_hbsObject);
+      res.json(data);
     });
-
+  });
+    app.get("/api/charts/:user_id", function (req, res) {
     // find all user calories
-    db.calories.findAll({
+    db.Calories.findAll({
       where:
-        { id: req.params.user_id }
+        { user_id: req.params.user_id }
     }).then(function (data) {
       var calories_hbsObject = {
-        calories: data
+        Calories: data
       };
-      res.render("charts", calories_hbsObject);
+      res.json(data);
     });
-
+  });
+    app.get("/api/charts/:user_id", function (req, res) {
     //find all user weight
-    db.user_weight.findAll({
+    db.Userweights.findAll({
       where:
         { user_id: req.params.user_id }
     }).then(function (data) {
       var user_weight_hbsObject = {
         user_weight: data
       };
-      res.render("charts", user_weight_hbsObject);
+      res.json(data);
     });
   });
     //new user api post
