@@ -3,19 +3,24 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-  //gets list of users and displays it on the sign in page
+  //gets list of users and displays it on the sign in page -  not needed if we use passport
   app.get("/api/home/", function (req, res) {
     db.Users.findAll({}).then(function (data) {
       var hbsObject = {
         Users: data
       };
-      console.log(data)
-      res.json(data);
+      res.json(hbsObject);
     });
   });
 
+
+  // gets list of user specific activities 
+
+
   app.get("/api/activities/:user_id", function (req, res) {
     db.Activities.findAll({
+      limit: 10,
+      order: [['created_At', 'DESC']],
       where:
         { user_id: req.params.user_id }
     }).then(function (data) {
@@ -26,37 +31,46 @@ module.exports = function (app) {
       for (var i = 0; i < data.length; i++) {
         totalCalories = (totalCalories + parseInt(data[i].total_cal_burn));
       }
-      console.log("here's your total calories expended over the past five days " + totalCalories);
-      res.json(data);
+      res.json(activities_hbsObject);
     });
   });
 
-  //get user activities, user calories, and user weight for charts page
+
+  //get user specific calorie/food data
+
 
   app.get("/api/calories/:user_id", function (req, res) {
-    // find all user calories
     db.Calories.findAll({
+      order: [['created_At', 'DESC']],
       where:
         { user_id: req.params.user_id }
     }).then(function (data) {
       var calories_hbsObject = {
         Calories: data
       };
-      res.json(data);
+      res.json(calories_hbsObject);
     });
   });
-  app.get("/api/weights/:user_id", function (req, res) {
-    //find all user weight
+
+  //get user specific weight data
+
+
+  app.get("/api/userweight/:user_id", function (req, res) {
     db.Userweight.findAll({
+      order: [['createdAt', 'DESC']],
       where:
         { user_id: req.params.user_id }
     }).then(function (data) {
       var user_weight_hbsObject = {
         user_weight: data
       };
-      res.json(data);
+      res.json(user_weight_hbsObject);
     });
   });
+
+
+
+////////// POSTS ///////////
 
   //new user api post
   app.post("/api/input", function (req, res) {
@@ -71,7 +85,7 @@ module.exports = function (app) {
     });
   });
 
-  // user based calorie input post
+  // user specific calorie input post
   app.post("/api/input/:user_id", function (req, res) {
     db.calories.create({
       user_id: req.body.user_id,
@@ -93,7 +107,7 @@ module.exports = function (app) {
   });
 
   //"update" current user weight by posting to user weight table.
-  app.post("/api/user_weight/:user_id", function (req, res) {
+  app.post("/api/input/:user_id", function (req, res) {
     db.user_weight.create({
       user_id: req.body.user_id,
       user_weight: req.body.user_weight,
@@ -101,6 +115,8 @@ module.exports = function (app) {
 
     })
   });
+
+/////////// should move to app.js /////////
 
   app.get("/charts/:user_id", function (req, res) {
     var activities_hbsObject = [];
