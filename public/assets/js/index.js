@@ -81,7 +81,7 @@ $(document).ready(function () {
         caloriePost: function(data, user_id){
             return $.ajax({
                 headers: {"Content-type":"application/json"},
-                url: "api/calorie/"+user_id,
+                url: "api/caloriePost/"+user_id,
                 type: "POST",
                 data: data
             })
@@ -89,7 +89,7 @@ $(document).ready(function () {
         activityPost: function(data, user_id){
             return $.ajax({
                 headers: {"Content-type":"application/json"},
-                url: "api/activity"+user_id,
+                url: "api/activityPost/"+user_id,
                 type: "POST",
                 data: data
             })
@@ -97,7 +97,7 @@ $(document).ready(function () {
         userweightPost: function(data, user_id){
             return $.ajax({
                 headers: {"Content-type":"application/json"},
-                url: "api/userweight/"+user_id,
+                url: "api/userweightPost/"+user_id,
                 type: "POST",
                 data: data
             })
@@ -125,11 +125,12 @@ $(document).ready(function () {
         }
     };
 
-
-
-
-
     
+
+
+
+
+
 
     // Click events ============================================================
     // Signing in button:
