@@ -1,4 +1,4 @@
-import { json } from "sequelize/types";
+// import { json } from "sequelize/types";
 
 $(document).ready(function () {
 
