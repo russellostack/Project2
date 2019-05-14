@@ -13,34 +13,57 @@
                 <p id="fqa" class="random-quote-author"></p>
               </div>
             </div>
-            <div class="col-md-12">
-              <h2 class="header">Recent Workouts</h2>
-            </div>
-            <div class="row">
-              <div class="col-md-3">Workout Date</div>
-              <div class="col-md-3">Type</div>
-              <div class="col-md-3">Time</div>
-              <div class="col-md-3">Calories</div>
-            </div>
-            {{#each Activities}}
-            <div class="row">
-              <div class="col-md-6">{{createdAt}}</div>
-              <div class="col-md-6">{{activity_name}}</div>
-              <div class="col-md-6">{{activity_quantity}}</div>
-              <div class="col-md-6">{{total_cal_burn}}</div>
-            </div>
-            {{/each}}
           </div>
         </div>
-        <button type="button" id="signinbtn" class="btn btn-primary btn-lg">Sign in</button>
-        <!-- <p>Or</p> -->
-        <button type="button" id="newuserbnt" class="btn btn-primary btn-lg">Create New User</button>
-        <div class="main-text"></div>
       </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <h2 class="header">Recent Workouts</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><b>Workout Date</b></div>
+        <div class="col-md-3"><b>Type</b></div>
+        <div class="col-md-3"><b>Time</b></div>
+        <div class="col-md-3"><b>Calories</b></div>
+      </div>
+      {{#each Activities}}
+      <div class="row">
+        <div class="col-md-3">{{activity_date}}</div>
+        <div class="col-md-3">{{activity_name}}</div>
+        <div class="col-md-3">{{activity_quantity}}</div>
+        <div class="col-md-3">{{total_cal_burn}}</div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="container">
+      <div class="row">
+        <h2 class="header">Recent Foods</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><b>Date</b></div>
+        <div class="col-md-3"><b>Food</b></div>
+        <div class="col-md-3"><b></b></div>
+        <div class="col-md-3"><b>Calories</b></div>
+      </div>
+      {{#each Calories}}
+      <div class="row">
+        <div class="col-md-3">{{food_date}}</div>
+        <div class="col-md-3">{{food_name}}</div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3">{{total_cal_con}}</div>
+      </div>
+      {{/each}}
     </div>
   </div>
 </div>
+<button type="button" id="signinbtn" class="btn btn-primary btn-lg">Sign in</button>
+<!-- <p>Or</p> -->
+<button type="button" id="newuserbnt" class="btn btn-primary btn-lg">Create New User</button>
+<div class="main-text"></div>
 </div>
+{{!-- </div>
+</div> --}}
 
 {{!-- <body>
   <div id="myDiv">
