@@ -70,7 +70,7 @@ $(document).ready(function () {
 
 
     var api = {
-        signIn: function(user){
+        userCreation: function(user){
             return $.ajax({
                 headers: {"Content-type":"application/json"},
                 url: "api/signin",
@@ -90,6 +90,7 @@ $(document).ready(function () {
             return $.ajax({
                 headers: {"Content-type":"application/json"},
                 url: "api/activity"+user_id,
+                type: "POST",
                 data: data
             })
         },
@@ -97,14 +98,38 @@ $(document).ready(function () {
             return $.ajax({
                 headers: {"Content-type":"application/json"},
                 url: "api/userweight/"+user_id,
+                type: "POST",
                 data: data
             })
         },
-
-
+        activitiesGet: function(user_id){
+            return $.ajax({
+                headers: {"Content-type":"application/json"},
+                url: "api/activitiesGet/"+user_id,
+                type: "GET"
+            })
+        },
+        caloriesGet: function(user_id){
+            return $.ajax({
+                headers: {"Content-type":"application/json"},
+                url: "api/caloriesGet/"+user_id,
+                type:"GET",
+            })
+        },
+        userweightGet: function(user_id){
+            return $.ajax({
+                headers: {"Content-type":"application/json"},
+                url: "api/userweightGet",
+                type: "GET"
+            })
+        }
     };
 
 
+
+
+
+    
 
     // Click events ============================================================
     // Signing in button:
