@@ -3,18 +3,10 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-  //gets list of users and displays it on the sign in page -  not needed if we use passport
-  app.get("/api/home/", function (req, res) {
-    db.Users.findAll({}).then(function (dbUsers) {
-      res.json(dbUsers);
-    });
-  });
 
+  // gets list of user specific activities //
 
-  // gets list of user specific activities 
-
-
-  app.get("/api/activities/:user_id", function (req, res) {
+  app.get("/api/activitiesGet/:user_id", function (req, res) {
     db.Activities.findAll({
       limit: 10,
       order: [['created_At', 'DESC']],
@@ -29,7 +21,7 @@ module.exports = function (app) {
   //get user specific calorie/food data
 
 
-  app.get("/api/calories/:user_id", function (req, res) {
+  app.get("/api/caloriesGet/:user_id", function (req, res) {
     db.Calories.findAll({
       order: [['created_At', 'DESC']],
       where:
@@ -42,7 +34,7 @@ module.exports = function (app) {
   //get user specific weight data
 
 
-  app.get("/api/userweight/:user_id", function (req, res) {
+  app.get("/api/userweightGet/:user_id", function (req, res) {
     db.Userweight.findAll({
       order: [['createdAt', 'DESC']],
       where:
@@ -72,7 +64,7 @@ module.exports = function (app) {
   });
 
   // user specific calorie input post
-  app.post("/api/calorie/:user_id", function (req, res) {
+  app.post("/api/caloriePost/:user_id", function (req, res) {
     db.calories.create({
       user_id: req.body.user_id,
       food_name: req.body.food_name,
@@ -84,7 +76,7 @@ module.exports = function (app) {
   });
 
   //user based activity input post
-  app.post("/api/activity/:user_id", function (req, res) {
+  app.post("/api/activityPost/:user_id", function (req, res) {
     db.activities.create({
       user_id: req.body.user_id,
       activity_name: req.body.activity_name,
@@ -97,48 +89,13 @@ module.exports = function (app) {
   });
 
   //"update" current user weight by posting to user weight table.
-  app.post("/api/userweight/:user_id", function (req, res) {
+  app.post("/api/userweightPost/:user_id", function (req, res) {
     db.user_weight.create({
       user_id: req.body.user_id,
       user_weight: req.body.user_weight,
       input_time: req.body.input_time,
     }).then(function(dbUserweight){
       res.json(dbUserweight);
-    });
-  });
-
-/////////// should move to app.js /////////
-
-  app.get("/charts/:user_id", function (req, res) {
-    var activities_hbsObject = [];
-    var calories_hbsObject = [];
-    db.Activities.findAll({
-      limit: 5,
-      order: [['createdAt', 'DESC']],
-      where: {
-        user_id: req.params.user_id,
-      }
-    }).then(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        activities_hbsObject.push(data[i].dataValues);
-      }
-      console.log(activities_hbsObject)
-    });
-    db.Calories.findAll({
-      limit: 5,
-      order: [['createdAt', 'DESC']],
-      where: {
-        user_id: req.params.user_id,
-      }
-    }).then(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        calories_hbsObject.push(data[i].dataValues);
-      }
-      console.log(calories_hbsObject)
-      res.render("layouts/charts", {
-        Activities: activities_hbsObject,
-        Calories: calories_hbsObject
-      })
     });
   });
 };
