@@ -32,6 +32,91 @@
     </div>
   </div>
 </div>
+<!--Testing pushing info to DB-->
+
+<!--Create User-->
+   <div id="new-user-modal" class="modal fade" data-backdrop="static" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New User</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="new-user-modal-form" class="needs-validation" novalidate>
+                        <div class="form-group">
+                            <label for="inputNewUserName">User name</label>
+                            <input type="text" class="form-control" id="inputNewUserName"
+                                placeholder="Create New User name" required>
+                            <div class="invalid-feedback">
+                                Please enter user name
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNewPassword">Password</label>
+                            <input type="password" class="form-control" id="inputNewPassword"
+                                placeholder="Create New User Password" required>
+                            <div class="invalid-feedback">
+                                Please enter password
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCurrentWeight">Your current weight</label>
+                            <input type="number" onkeydown="return event.keyCode !== 69" class="form-control"
+                                id="inputCurrentWeight" placeholder="Input number, LBs" required>
+                            <div class="invalid-feedback">
+                                Please enter number
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputTargetWeight">Your target weight</label>
+                            <input type="number" onkeydown="return event.keyCode !== 69" class="form-control"
+                                id="inputTargetWeight" placeholder="Input number, LBs" required>
+                            <div class="invalid-feedback">
+                                Please enter number
+                            </div>
+                        </div>
+                        <button id="newusersubmitbtn" type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+<script>
+  $(function() {
+    $('#newuserbnt').on('click', function(event) {
+      event.preventDefault();
+      $("#new-user-modal").modal("show");
+    });
+
+    $('#newusersubmitbtn').on('click', function(event) {
+      event.preventDefault();
+      var user= {
+        userName: $('#inputNewUserName').val(),
+        password: $('#inputNewPassword').val(),
+        startingWeight: $('#inputCurrentWeight').val(),
+        targetWeight: $('#inputTargetWeight').val()
+      };
+      $.ajax('/', {
+        type: 'POST',
+        data: user
+      }).then(function() {
+        console.log('userCreated');
+        app.get('/input',  function(req, res){
+          res.render("input");
+         });
+      });
+      $('#inputNewUserName').val('');
+      $('#inputNewPassword').val('');
+      $('#inputCurrentWeight').val('');
+      $('#inputTargetWeight').val('');
+      $('#new-user-modal').modal('hide');
+      });
+    });
+</script>
 
 
 {{!-- <div class="container">

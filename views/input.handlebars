@@ -68,15 +68,14 @@
 </div>
 
 <!-- JS files: jQuery, Popper.js, Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 <script src="../public/assets/js/app.js" type="text/javascript"></script>
 <script>$(document).ready(function () {
     $("#food-button").click(function () {
@@ -96,7 +95,51 @@
         }).then(function (data) {
             total_cal_con = data.hints[0].food.nutrients.ENERC_KCAL;
             food_name = data.hints[0].food.label;
-        });
-    });
+          $.ajax('/api/input/:user_id', {
+             type: 'POST',
+             data: {
+               total_cal_con: data.total_cal_con,
+               food_name: data.food_name
+             }
+            }).then(function() {
+              console.log('Food logged');
+             });
+         });
+      });
 });
+// Food Submission
+/*
+  $(document).ready(function() {
+    $('#food-submit').on('click', function(event) {
+      event.preventDefault();
+      var food = $('#food-input').val();
+      $.ajax('/api/input/:user_id', {
+        type: 'POST',
+        data: food
+      }).then(function() {
+        $('#food-input').val('');
+        console.log('food posted');
+      })
+
+    })
+  })*/
+
+// Update Weight
+// Must find a way to insert correct user_id
+  $(document).ready(function() {
+    $('#weight-submit').on('click', function(event) {
+      event.preventDefault();
+      var weight = {
+        user_id: 1,
+        user_weight: $('#weight-input').val()
+      }
+      console.log(weight);
+      $.ajax('/api/user_weight/:user_id', {
+        type: 'POST',
+        data: weight
+      }).then(function(res) {
+        console.log('Weight logged');
+      })
+    });
+  });
 </script>

@@ -59,12 +59,12 @@ module.exports = function (app) {
   });
   
     //new user api post
-    app.post("/api/input", function (req, res) {
-      db.users.create({
-        username: req.body.username,
+    app.post("/", function (req, res) {
+      db.Users.create({
+        username: req.body.userName,
         password: req.body.password,
-        starting_weight: req.body.starting_weight,
-        target_weight: req.body.target_weight
+        starting_weight: req.body.startingWeight,
+        target_weight: req.body.targetWeight
         //  
         //not sure how to initialize the created_at and updated_at fields
 
@@ -73,7 +73,7 @@ module.exports = function (app) {
 
     // user based calorie input post
     app.post("/api/input/:user_id", function (req, res) {
-      db.calories.create({
+      db.Calories.create({
         user_id: req.body.user_id,
         food_name: req.body.food_name,
         food_date: req.body.food_date,
@@ -83,10 +83,10 @@ module.exports = function (app) {
 
     //user based activity input post
     app.post("/api/input/:user_id", function (req, res) {
-      db.activities.create({
+      db.Activities.create({
         user_id: req.body.user_id,
         activity_name: req.body.activity_name,
-        activity_quantity: req.bdy.activity_quantity,
+        activity_quantity: req.body.activity_quantity,
         actifity_date: req.body.activity_date,
         total_cal_burn: req.body.total_cal_burn
       });
@@ -94,11 +94,9 @@ module.exports = function (app) {
 
     //"update" current user weight by posting to user weight table.
     app.post("/api/user_weight/:user_id", function (req, res) {
-      db.user_weight.create({
+      db.Userweights.create({
         user_id: req.body.user_id,
-        user_weight: req.body.user_weight,
-        input_time: req.body.input_time,
-
+        user_weight: req.body.user_weight
       })
     });
-};
+}; 
