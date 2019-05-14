@@ -47,7 +47,7 @@ module.exports = function (app) {
   });
   app.get("/api/weights/:user_id", function (req, res) {
     //find all user weight
-    db.Userweights.findAll({
+    db.Userweight.findAll({
       where:
         { user_id: req.params.user_id }
     }).then(function (data) {

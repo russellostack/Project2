@@ -57,7 +57,7 @@ $(document).ready(function () {
         rn = Math.floor(Math.random() * Math.floor(Quotes.length));
         return rn;
     };
-    
+
     // Curren year generator ===================================================
     function yearGenerator() {
         $('#year').text(new Date().getFullYear());

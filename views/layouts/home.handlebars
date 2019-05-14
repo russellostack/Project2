@@ -1,78 +1,153 @@
- <div class="container">
-        <!-- HEADER -->
-        <div class="row">
-            <div class="col-md-12">
-                <div id="buttons" class="main-content">
-                    <h1>Fit-or-Fat</h1>
-                    <h6>(the name is a subject to change)</h6>
-                    <button type="button" id="sign-out-btn" class="btn btn-primary btn-lg">Sign out</button>
+<div class="container">
+    <!-- HEADER -->
+    <div class="row">
+        <div class="col-md-12">
+            <div id="buttons" class="main-content">
+                <h1 class="d-inline display-3">Fit-or-Fat <span class="h1">weight loss tracker</span></h1>
+                <!-- <h6>(the name is a subject to change)</h6> -->
+                <div class="main-buttons ">
+                    <button type="button" id="new-user-bnt" class="btn btn-primary btn-lg">Create
+                        New User</button>
+                    <button type="button" id="sign-in-btn" class="btn btn-primary btn-lg">Sign
+                        in</button>
                 </div>
-            </div>
-        </div>
-        <!-- FOOD AND ACTIVITY INPUT -->
-        <div class="row" id="user-input">
-            <div id="food-input" class="col-md-6 main-content">
-                <h4 class="text-center">What did you eat today?</h4>
-                <form id="food-input-form">
-                    <div class="form-group mt-3">
-                        <label for="food-type-input">Enter types of food you ate today</label>
-                        <input type="text" class="form-control" id="food-type-input"
-                            placeholder="food type, for example 'chicken'">
-                        <div class="form-group mt-3">
-                            <label for="food-amt-input">Enter amount of food you ate today</label>
-                            <input type="text" class="form-control" id="food-amt-input" placeholder="grams">
-                        </div>
-                        <div class="col text-center">
-                            <button id="food-submit" class="btn btn-primary btn-lg">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div id="activity-input" class="col-md-6 main-content">
-                <h4 class="text-center">What did you do today?</h4>
-                <form id="activity-input-form">
-                    <div class="form-group mt-3">
-                        <label for="activity-type-input">Enter type of activity you did today</label>
-                        <input type="text" class="form-control" id="activity-type-input"
-                            placeholder="type of activity, for example 'running'">
-                        <div class="form-group mt-3">
-                            <label for="activity-amt-input">Enter amount of activity you did today</label>
-                            <input type="text" class="form-control" id="activity-amt-input" placeholder="">
-                        </div>
-                        <div class="col text-center mt-3">
-                            <button id="activity-submit" class="btn btn-primary btn-lg">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- WEIGHT INPUT -->
-        <div class="row" id="user-input-2">
-            <div id="weight-form" class="col-md-6 main-content">
-                <h4 class="text-center">What is yor current weight?</h4>
-                <form id="weight-input-form">
-                    <div class="form-group">
-                        <label for="weight-input">Enter types of food you ate today</label>
-                        <input type="text" class="form-control" id="weight-input" placeholder="kg">
-
-                        <div class="col text-center">
-                            <button id="weight-submit" class="btn btn-primary btn-lg">Submit</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 
-    <!-- JS files: jQuery, Popper.js, Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="../public/assets/js/app.js" type="text/javascript"></script>
+    <!-- Random Fitness Quote -->
+    <div id="rfq" class="row">
+        <div class="col-md-12" id="fitness-quotes">
+            <blockquote class="blockquote text-right random-quote main-content">
+                <p id="fq"></p>
+                <footer id="fqa" class="blockquote-footer random-quote-author">some</footer>
+            </blockquote>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Sing in -->
+<div id="sign-in-modal" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sing in</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Input validation -->
+                <form id="sign-in-modal-form" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label for="inputUserName">User name</label>
+                        <input type="text" class="form-control" id="inputUserName" placeholder="User name" required>
+                        <div class="invalid-feedback">
+                            Please enter username
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+                        <div class="invalid-feedback">
+                            Please enter password
+                        </div>
+                    </div>
+                    <button id="signinmodalbtn" type="submit" class="btn btn-primary btn-block">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Creating New User -->
+<div id="new-user-modal" class="modal fade" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New User</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="new-user-modal-form" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label for="inputNewUserName">User name</label>
+                        <input type="text" class="form-control" id="inputNewUserName" placeholder="Create New User name"
+                            required>
+                        <div class="invalid-feedback">
+                            Please enter user name
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNewPassword">Password</label>
+                        <input type="password" class="form-control" id="inputNewPassword"
+                            placeholder="Create New User Password" required>
+                        <div class="invalid-feedback">
+                            Please enter password
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputCurrentWeight">Your current weight</label>
+                        <input type="number" onkeydown="return event.keyCode !== 69" class="form-control"
+                            id="inputCurrentWeight" placeholder="Input number, LBs" required>
+                        <div class="invalid-feedback">
+                            Please enter number
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTargetWeight">Your target weight</label>
+                        <input type="number" onkeydown="return event.keyCode !== 69" class="form-control"
+                            id="inputTargetWeight" placeholder="Input number, LBs" required>
+                        <div class="invalid-feedback">
+                            Please enter number
+                        </div>
+                    </div>
+                    <button id="newusermodalbtn" type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="main-footer" class="bg-dark fixed-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center py-2">
+                <button id="footer-btn" class="btn btn-primary" data-toggle="modal" data-target="#contactModal">KIL.R
+                    Squad</button>
+                <p id="copyright">Copyright &copy;
+                    <span id="year"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- TEAM MODAL -->
+<div class="modal fade" id="contactModal" role="dialog" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">This app coded by KIL.R Squad:</h5>
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h2><span class="h1 killer">K</span>eith Hemsoth</h2>
+                    </li>
+                    <li class="list-group-item">
+                        <h2><span class="h1 killer">I</span>gor Guba</h2>
+                    </li>
+                    <li class="list-group-item">
+                        <h2><span class="h1 killer">L</span>ance Godard</h2>
+                    </li>
+                    <li class="list-group-item">
+                        <h2><span class="h1 killer">R</span>ussell Stack</h2>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
