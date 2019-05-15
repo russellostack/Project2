@@ -67,119 +67,67 @@ $(document).ready(function () {
 
     yearGenerator();
 
+    api.activityGet(user_id).then
 
 
     var api = {
-        userCreation: function(user){
+        userCreation: function (user) {
             return $.ajax({
-                headers: {"Content-type":"application/json"},
+                headers: { "Content-type": "application/json" },
                 url: "api/signin",
                 type: "POST",
                 data: user
             })
         },
-        caloriePost: function(data, user_id){
+        caloriePost: function (data, user_id) {
             return $.ajax({
-                headers: {"Content-type":"application/json"},
-                url: "api/caloriePost/"+user_id,
+                headers: { "Content-type": "application/json" },
+                url: "api/caloriePost/" + user_id,
                 type: "POST",
                 data: data
             })
         },
-        activityPost: function(data, user_id){
+        activityPost: function (data, user_id) {
             return $.ajax({
-                headers: {"Content-type":"application/json"},
-                url: "api/activityPost/"+user_id,
+                headers: { "Content-type": "application/json" },
+                url: "api/activityPost/" + user_id,
                 type: "POST",
                 data: data
             })
         },
-        userweightPost: function(data, user_id){
+        userweightPost: function (data, user_id) {
             return $.ajax({
-                headers: {"Content-type":"application/json"},
-                url: "api/userweightPost/"+user_id,
+                headers: { "Content-type": "application/json" },
+                url: "api/userweightPost/" + user_id,
                 type: "POST",
                 data: data
             })
         },
-        activitiesGet: function(user_id){
+        activitiesGet: function (user_id) {
             return $.ajax({
-                headers: {"Content-type":"application/json"},
-                url: "api/activitiesGet/"+user_id,
+                headers: { "Content-type": "application/json" },
+                url: "api/activitiesGet/" + user_id,
                 type: "GET"
             })
         },
-        caloriesGet: function(user_id){
+        caloriesGet: function (user_id) {
             return $.ajax({
-                headers: {"Content-type":"application/json"},
-                url: "api/caloriesGet/"+user_id,
-                type:"GET",
+                headers: { "Content-type": "application/json" },
+                url: "api/caloriesGet/" + user_id,
+                type: "GET",
             })
         },
-        userweightGet: function(user_id){
+        userweightGet: function (user_id) {
             return $.ajax({
-                headers: {"Content-type":"application/json"},
+                headers: { "Content-type": "application/json" },
                 url: "api/userweightGet",
                 type: "GET"
             })
         }
     };
 
-    
 
-
-
-
-
-
-    // Click events ============================================================
-    // Signing in button:
-    $("#sign-in-btn").click(function () {
-        event.preventDefault();
-        $("#sign-in-modal").modal("show");
-        $("#inputUserName").val("");
-        $("#inputPassword").val("");
-
-        // When "sign in" MODAL is ready - input validation:
-        $("#sign-in-modal").ready(function () {
-            console.log("validator");
-            $("#signinmodalbtn").click(function () {
-                event.preventDefault();
-                var input = $("#inputUserName");
-                var form = $("#sign-in-modal-form");
-                if (input[0].checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.addClass("was-validated");
-            });
-        });
-    });
-
-    // "Create new user" button click event:
-    $("#new-user-bnt").click(function () {
-        event.preventDefault();
-        $("#new-user-modal").modal("show");
-
-        // When "create new user" MODAL is ready - input validation:
-        $("#new-user-modal").ready(function () {
-            console.log("validator");
-            $("#newusermodalbtn").click(function () {
-                event.preventDefault();
-                var input = $("#inputNewUserName");
-                var form = $("#new-user-modal-form");
-                if (input[0].checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.addClass("was-validated");
-            });
-        });
-    });
-
-    /// food api call button ////
-
-    $("#food-button").click(function () {
+    var foodbuttonclick = function () {
         event.preventDefault();
         var foodName = {
             name: $("#food-input").val().trim(),
@@ -189,12 +137,87 @@ $(document).ready(function () {
 
         $.ajax({
             url: queryURL,
-            method: "GET"
+            method: "POST"
         }).then(function (response) {
             total_cal_con = response.hints[0].food.nutrients.ENERC_KCAL;
             food_name = response.hints[0].food.label;
+            api.caloriePost(total_cal_con)
+
+            var data = {total_cal_con, food_name};
+            api.caloriePost(data);
         });
+    };
+    var activitybuttonclick = function(){
+        event.preventDefault();
+        var activityType = $("#activity-type-input").val().trim();
+        var activityAmount = $("#activity-amt-input").val().trim();
+        var data = {activityAmount, activityType};
+        api.activityPost(data);
+    };
+    var weightbuttonclick = function(){
+        event.preventDefault();
+        var user_weight = $("#weight-input").val().trim();
+        api.userweightPost(user_weight);
+    };
+
+
+    $("#food-submit").click(foodbuttonclick());
+    $("#activity-submit").click(activitybuttonclick());
+    $("#weight-submit").click(weightbuttonclick());
+    
+    
+
+
+
+
+
+        // Click events ============================================================
+        // Signing in button:
+        $("#sign-in-btn").click(function () {
+            event.preventDefault();
+            $("#sign-in-modal").modal("show");
+            $("#inputUserName").val("");
+            $("#inputPassword").val("");
+
+            // When "sign in" MODAL is ready - input validation:
+            $("#sign-in-modal").ready(function () {
+                console.log("validator");
+                $("#signinmodalbtn").click(function () {
+                    event.preventDefault();
+                    var input = $("#inputUserName");
+                    var form = $("#sign-in-modal-form");
+                    if (input[0].checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.addClass("was-validated");
+                });
+            });
+        });
+
+        // "Create new user" button click event:
+        $("#new-user-bnt").click(function () {
+            event.preventDefault();
+            $("#new-user-modal").modal("show");
+
+            // When "create new user" MODAL is ready - input validation:
+            $("#new-user-modal").ready(function () {
+                console.log("validator");
+                $("#newusermodalbtn").click(function () {
+                    event.preventDefault();
+                    var input = $("#inputNewUserName");
+                    var form = $("#new-user-modal-form");
+                    if (input[0].checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.addClass("was-validated");
+                });
+            });
+        });
+
+        /// food api call button ////
+
+
+
     });
-
-
-});

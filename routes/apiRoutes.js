@@ -4,6 +4,15 @@ var db = require("../models");
 module.exports = function (app) {
 
 
+
+  // gets list of users //
+
+  app.get("/api/home", function(req,res){
+    db.Users.findAll({}).then(function(dbUsers){
+      res.json(dbUsers);
+    })
+  })
+
   // gets list of user specific activities //
 
   app.get("/api/activitiesGet/:user_id", function (req, res) {
@@ -22,7 +31,7 @@ module.exports = function (app) {
 
 
   app.get("/api/caloriesGet/:user_id", function (req, res) {
-    db.Calories.findAll({
+    db.calories.findAll({
       order: [['created_At', 'DESC']],
       where:
         { user_id: req.params.user_id }
@@ -35,7 +44,7 @@ module.exports = function (app) {
 
 
   app.get("/api/userweightGet/:user_id", function (req, res) {
-    db.Userweight.findAll({
+    db.userweight.findAll({
       order: [['createdAt', 'DESC']],
       where:
         { user_id: req.params.user_id }
