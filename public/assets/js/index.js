@@ -126,6 +126,15 @@ $(document).ready(function () {
         }
     };
 
+    var newuserbutton = function(){
+        event.preventDefault();
+        var user_name = $("#inputNewUserName").val().trim();
+        var password = $("#inputNewPassword").val().trim();
+        var current_weight = $("#inputCurrentWeight").val().trim();
+        var target_weight = $("#inputTargetWeight").val().trim();
+        var data = {user_name, password, current_weight, target_weight};
+        api.userCreation(data);
+    }
 
     var foodbuttonclick = function () {
         event.preventDefault();
@@ -164,6 +173,7 @@ $(document).ready(function () {
     $("#food-submit").click(foodbuttonclick());
     $("#activity-submit").click(activitybuttonclick());
     $("#weight-submit").click(weightbuttonclick());
+    $("#newusermodalbtn").click(newuserbutton());
     
     
 
@@ -176,9 +186,6 @@ $(document).ready(function () {
         $("#sign-in-btn").click(function () {
             event.preventDefault();
             $("#sign-in-modal").modal("show");
-            $("#inputUserName").val("");
-            $("#inputPassword").val("");
-
             // When "sign in" MODAL is ready - input validation:
             $("#sign-in-modal").ready(function () {
                 console.log("validator");
