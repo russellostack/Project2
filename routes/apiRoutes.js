@@ -4,13 +4,13 @@ var passport = require("../config/passport");
 module.exports = function (app) {
     // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
-  // Otherwise the user will be sent an error
-  app.post("/api/signin", passport.authenticate("local"), function(req, res) {
-    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
-    // So we're sending the user back the route to the members page because the redirect will happen on the front end
-    // They won't get this or even be able to access this page if they aren't authed
-    res.json("/input");
-  });
+  // // Otherwise the user will be sent an error
+  // app.post("/api/signin", passport.authenticate("local"), function(req, res) {
+  //   // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+  //   // So we're sending the user back the route to the members page because the redirect will happen on the front end
+  //   // They won't get this or even be able to access this page if they aren't authed
+  //   res.json("/input");
+  // });
 
 
 
@@ -28,7 +28,7 @@ module.exports = function (app) {
   app.get("/api/activitiesGet/:user_id", function (req, res) {
     db.Activities.findAll({
       limit: 10,
-      order: [['created_At', 'DESC']],
+      order: [['DESC']],
       where:
         { user_id: req.params.user_id }
     }).then(function (dbActivities) {
@@ -42,7 +42,7 @@ module.exports = function (app) {
 
   app.get("/api/caloriesGet/:user_id", function (req, res) {
     db.calories.findAll({
-      order: [['created_At', 'DESC']],
+      order: [['DESC']],
       where:
         { user_id: req.params.user_id }
     }).then(function (dbCalories) {
@@ -55,7 +55,7 @@ module.exports = function (app) {
 
   app.get("/api/userweightGet/:user_id", function (req, res) {
     db.userweight.findAll({
-      order: [['createdAt', 'DESC']],
+      order: [['created_At', 'DESC']],
       where:
         { user_id: req.params.user_id }
     }).then(function (dbUserweight) {
@@ -67,7 +67,7 @@ module.exports = function (app) {
 
 ////////// POSTS ///////////
 
-  //new user api post
+  // new user api post
   app.post("/api/signin", function (req, res) {
     db.users.create({
       username: req.body.username,

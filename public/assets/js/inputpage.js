@@ -1,5 +1,29 @@
-import api from "index.js";
-
+var api = {
+    caloriePost: function (data, user_id) {
+        return $.ajax({
+            headers: { "Content-type": "application/json" },
+            url: "api/caloriePost/" + user_id,
+            type: "POST",
+            data: data
+        })
+    },
+    activityPost: function (data, user_id) {
+        return $.ajax({
+            headers: { "Content-type": "application/json" },
+            url: "api/activityPost/" + user_id,
+            type: "POST",
+            data: data
+        })
+    },
+    userweightPost: function (data, user_id) {
+        return $.ajax({
+            headers: { "Content-type": "application/json" },
+            url: "api/userweightPost/" + user_id,
+            type: "POST",
+            data: data
+        })
+    },
+};
 var foodbuttonclick = function () {
     console.log(("#food-input").val());
     var foodName = {

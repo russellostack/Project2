@@ -1,9 +1,18 @@
-import "index.js"
+var api = {
+    userCreation: function (user) {
+        return $.ajax({
+            headers: { "Content-type": "application/json" },
+            url: "api/signin",
+            type: "POST",
+            data: user
+        })
+    }
+};
 var newuserbutton = function () {
-    var user_name = $("#inputNewUserName").val().trim();
-    var password = $("#inputNewPassword").val().trim();
-    var current_weight = $("#inputCurrentWeight").val().trim();
-    var target_weight = $("#inputTargetWeight").val().trim();
+    var user_name = $("#inputNewUserName").val();
+    var password = $("#inputNewPassword").val();
+    var current_weight = $("#inputCurrentWeight").val();
+    var target_weight = $("#inputTargetWeight").val();
     var data = { user_name, password, current_weight, target_weight };
     api.userCreation(data);
 }
