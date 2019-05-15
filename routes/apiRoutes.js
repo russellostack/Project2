@@ -55,7 +55,7 @@ module.exports = function (app) {
 
   app.get("/api/userweightGet/:user_id", function (req, res) {
     db.userweight.findAll({
-      order: [['created_At', 'DESC']],
+      order: [['DESC']],
       where:
         { user_id: req.params.user_id }
     }).then(function (dbUserweight) {

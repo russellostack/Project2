@@ -9,6 +9,8 @@ create table users(
     `password` varchar(255) not null,
     starting_weight int(10) not null,
     target_weight int(10) not null,
+    createdAt timestamp default CURRENT_TIMESTAMP not null,
+    updatedAt timestamp default CURRENT_TIMESTAMP not null,
     primary key (user_id)
 );
 SELECT * FROM users;
@@ -20,6 +22,8 @@ create table calories(
     food_name varchar(255) not null,
     food_date DATE not null,
     total_cal_con int(10) not null,
+    createdAt timestamp default CURRENT_TIMESTAMP not null,
+    updatedAt timestamp default CURRENT_TIMESTAMP not null,
     foreign key (user_id) references users(user_id),
     primary key (calorie_id)
 );
@@ -33,6 +37,8 @@ create table activities(
     activity_quantity int(10) not null,
     activity_date DATE not null,
     total_cal_burn int(10) not null,
+    createdAt timestamp default CURRENT_TIMESTAMP not null,
+    updatedAt timestamp default CURRENT_TIMESTAMP not null,
     foreign key (user_id) references users(user_id),
     primary key (activity_id)
 );
@@ -43,6 +49,8 @@ create table userweight(
     weight_id int not null auto_increment,
     user_id int not null,
     user_weight int(10) not null,
+    createdAt timestamp default CURRENT_TIMESTAMP not null,
+    updatedAt timestamp default CURRENT_TIMESTAMP not null,
     foreign key (user_id) REFERENCES users(user_id),
     primary key (weight_id)
 );
