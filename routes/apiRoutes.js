@@ -28,7 +28,6 @@ module.exports = function (app) {
   app.get("/api/activitiesGet/:user_id", function (req, res) {
     db.Activities.findAll({
       limit: 10,
-      order: [['DESC']],
       where:
         { user_id: req.params.user_id }
     }).then(function (dbActivities) {
@@ -41,8 +40,8 @@ module.exports = function (app) {
 
 
   app.get("/api/caloriesGet/:user_id", function (req, res) {
-    db.calories.findAll({
-      order: [['DESC']],
+    db.Calories.findAll({
+      limit:10,
       where:
         { user_id: req.params.user_id }
     }).then(function (dbCalories) {
@@ -54,8 +53,7 @@ module.exports = function (app) {
 
 
   app.get("/api/userweightGet/:user_id", function (req, res) {
-    db.userweight.findAll({
-      order: [['DESC']],
+    db.Userweights.findAll({
       where:
         { user_id: req.params.user_id }
     }).then(function (dbUserweight) {
@@ -69,7 +67,7 @@ module.exports = function (app) {
 
   // new user api post
   app.post("/api/signin", function (req, res) {
-    db.users.create({
+    db.Users.create({
       username: req.body.username,
       password: req.body.password,
       starting_weight: req.body.starting_weight,
@@ -84,7 +82,7 @@ module.exports = function (app) {
 
   // user specific calorie input post
   app.post("/api/caloriePost/:user_id", function (req, res) {
-    db.calories.create({
+    db.Calories.create({
       user_id: req.body.user_id,
       food_name: req.body.food_name,
       food_date: req.body.food_date,
@@ -96,7 +94,7 @@ module.exports = function (app) {
 
   //user based activity input post
   app.post("/api/activityPost/:user_id", function (req, res) {
-    db.activities.create({
+    db.Activities.create({
       user_id: req.body.user_id,
       activity_name: req.body.activity_name,
       activity_quantity: req.bdy.activity_quantity,
@@ -109,7 +107,7 @@ module.exports = function (app) {
 
   //"update" current user weight by posting to user weight table.
   app.post("/api/userweightPost/:user_id", function (req, res) {
-    db.user_weight.create({
+    db.Userweights.create({
       user_id: req.body.user_id,
       user_weight: req.body.user_weight,
       input_time: req.body.input_time,
