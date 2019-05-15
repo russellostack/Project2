@@ -72,7 +72,7 @@ var api = {
     userCreation: function (user) {
         return $.ajax({
             headers: { "Content-type": "application/json" },
-            url: "api/signin",
+            url: "api/userCreate",
             type: "POST",
             data: user
         })
@@ -119,6 +119,13 @@ var api = {
         return $.ajax({
             headers: { "Content-type": "application/json" },
             url: "api/userweightGet/"+ user_id,
+            type: "GET"
+        })
+    },
+    userGet: function(){
+        return $.ajax({
+            headers: { "Content-type": "application/json" },
+            url: "api/userGet",
             type: "GET"
         })
     }

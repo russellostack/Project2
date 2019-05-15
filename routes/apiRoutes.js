@@ -17,7 +17,7 @@ module.exports = function (app) {
 
   // gets list of users //
 
-  app.get("/api/home", function(req,res){
+  app.get("/api/userGet", function(req,res){
     db.Users.findAll({}).then(function(dbUsers){
       res.json(dbUsers);
     })
@@ -66,14 +66,12 @@ module.exports = function (app) {
 ////////// POSTS ///////////
 
   // new user api post
-  app.post("/api/signin", function (req, res) {
+  app.post("/api/userCreate", function (req, res) {
     db.Users.create({
       username: req.body.username,
       password: req.body.password,
       starting_weight: req.body.starting_weight,
       target_weight: req.body.target_weight
-      //  
-      //not sure how to initialize the created_at and updated_at fields
 
     }).then(function(dbUser){
       res.json(dbUser);

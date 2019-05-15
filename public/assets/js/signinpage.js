@@ -2,7 +2,7 @@ var api = {
     userCreation: function (user) {
         return $.ajax({
             headers: { "Content-type": "application/json" },
-            url: "api/signin",
+            url: "api/userCreate",
             type: "POST",
             data: user
         })
