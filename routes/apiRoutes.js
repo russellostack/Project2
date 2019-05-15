@@ -16,46 +16,43 @@ module.exports = function (app) {
 
 
   // gets list of users //
-
   app.get("/api/userGet", function(req,res){
     db.Users.findAll({}).then(function(dbUsers){
       res.json(dbUsers);
     })
   })
-
+  
   // gets list of user specific activities //
-
   app.get("/api/activitiesGet/:user_id", function (req, res) {
-    db.Activities.findAll({
+    db.Activities.findAll({ 
       limit: 10,
-      where:
-        { user_id: req.params.user_id }
-    }).then(function (dbActivities) {
+      where: { 
+          user_id: req.params.user_id 
+        }
+    }).then(function (dbActivities) {  
       res.json(dbActivities);
-    });
-  });
+    });  
+  });  
 
 
   //get user specific calorie/food data
-
-
   app.get("/api/caloriesGet/:user_id", function (req, res) {
     db.Calories.findAll({
       limit:10,
-      where:
-        { user_id: req.params.user_id }
+      where: { 
+        user_id: req.params.user_id 
+      }
     }).then(function (dbCalories) {
       res.json(dbCalories);
     });
   });
 
   //get user specific weight data
-
-
   app.get("/api/userweightGet/:user_id", function (req, res) {
     db.Userweights.findAll({
-      where:
-        { user_id: req.params.user_id }
+      where: { 
+        user_id: req.params.user_id 
+      }
     }).then(function (dbUserweight) {
       res.json(dbUserweight);
     });
