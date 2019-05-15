@@ -124,101 +124,11 @@ var api = {
     }
 };
 
-
-var newuserbutton = function () {
-    var user_name = $("#inputNewUserName").val().trim();
-    var password = $("#inputNewPassword").val().trim();
-    var current_weight = $("#inputCurrentWeight").val().trim();
-    var target_weight = $("#inputTargetWeight").val().trim();
-    var data = { user_name, password, current_weight, target_weight };
-    api.userCreation(data);
-}
-
-// var foodbuttonclick = function () {
-//     console.log(("#food-input").val());
-//     var foodName = {
-//         name: $("#food-input").val().trim(),
-//     };
-//     foodName.replace(" ", "%20");
-//     var queryURL = "'https://api.edamam.com/api/food-database/parser?ingr=" + foodName + "&app_id={2cea8c5e}&app_key={3742da7bb611e71fab3e49e361fdbb55}"
-
-//     $.ajax({
-//         url: queryURL,
-//         method: "POST"
-//     }).then(function (response) {
-//         total_cal_con = response.hints[0].food.nutrients.ENERC_KCAL;
-//         food_name = response.hints[0].food.label;
-//         api.caloriePost(total_cal_con)
-
-//         var data = {total_cal_con, food_name};
-//         api.caloriePost(data);
-//     });
-// };
-// var activitybuttonclick = function(){
-//     var activityType = $("#activity-type-input").val().trim();
-//     var activityAmount = $("#activity-amt-input").val().trim();
-//     var data = {activityAmount, activityType};
-//     api.activityPost(data);
-// };
-// var weightbuttonclick = function(){
-//     var user_weight = $("#weight-input").val().trim();
-//     api.userweightPost(user_weight);
-// };
-
-
-// $("#food-submit").click(foodbuttonclick());
-// $("#activity-submit").click(activitybuttonclick());
-// $("#weight-submit").click(weightbuttonclick());
-$("#newusermodalbtn").click(newuserbutton());
+module.exports(api);
 
 
 
 
-
-
-
-// Click events ============================================================
-// Signing in button:
-$("#sign-in-btn").click(function () {
-    event.preventDefault();
-    $("#sign-in-modal").modal("show");
-    // When "sign in" MODAL is ready - input validation:
-    $("#sign-in-modal").ready(function () {
-        console.log("validator");
-        $("#signinmodalbtn").click(function () {
-            event.preventDefault();
-            var input = $("#inputUserName");
-            var form = $("#sign-in-modal-form");
-            if (input[0].checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.addClass("was-validated");
-        });
-    });
-});
-
-// "Create new user" button click event:
-$("#new-user-bnt").click(function () {
-    console.log("ive been clicked");
-    event.preventDefault();
-    $("#new-user-modal").modal("show");
-
-    // When "create new user" MODAL is ready - input validation:
-    $("#new-user-modal").ready(function () {
-        console.log("validator");
-        $("#newusermodalbtn").click(function () {
-            event.preventDefault();
-            var input = $("#inputNewUserName");
-            var form = $("#new-user-modal-form");
-            if (input[0].checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.addClass("was-validated");
-        });
-    });
-});
 
 
 

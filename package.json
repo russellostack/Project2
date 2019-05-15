@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/russellostack/Project2#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "bcrypt-nodejs": "0.0.3",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
