@@ -146,15 +146,15 @@ $(document).ready(function () {
         /////////////// page change button listeners /////////
 
         $('.inputpagelink').click(function () {
-            window.location = 'https://fit-or-fatapp.herokuapp.com/input';
+            window.location.href('https://fit-or-fatapp.herokuapp.com/input');
         });
         $(".chartspagelink").click(function () {
             // api.userdataGet(user_id);
-            window.location = "https://fit-or-fatapp.herokuapp.com/charts"
+            window.location.href("https://fit-or-fatapp.herokuapp.com/charts")
         });
         $(".homepagelink").click(function () {
-            window.location = "https://fit-or-fatapp.herokuapp.com/"
-        })
+            window.location.href("https://fit-or-fatapp.herokuapp.com/")
+        });
 
         //////// new user modal button listener /////////////
         $("#new-user-bnt").click(function () {
@@ -176,7 +176,7 @@ $(document).ready(function () {
             console.log(data);
             api.userCreation(JSON.stringify(data));
             console.log("user successfully created");
-            window.location = 'https://fit-or-fatapp.herokuapp.com//input';
+            window.location.href('https://fit-or-fatapp.herokuapp.com//input');
         });
 
 
@@ -227,7 +227,7 @@ $(document).ready(function () {
         $("#weight-submit").click(function () {
             var user_weight = $("#weight-input").val().trim();
             api.userweightPost(JSON.stringify(user_weight));
-            window.location = "https://fit-or-fatapp.herokuapp.com/charts";
+            window.location.href("https://fit-or-fatapp.herokuapp.com/charts");
 
         });
 
