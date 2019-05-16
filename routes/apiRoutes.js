@@ -2,7 +2,7 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function (app) {
-    // Using the passport.authenticate middleware with our local strategy.
+  // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // // Otherwise the user will be sent an error
   // app.post("/api/signin", passport.authenticate("local"), function(req, res) {
@@ -16,31 +16,31 @@ module.exports = function (app) {
 
 
   // gets list of users //
-  app.get("/api/userGet", function(req,res){
-    db.Users.findAll({}).then(function(dbUsers){
+  app.get("/api/userGet", function (req, res) {
+    db.Users.findAll({}).then(function (dbUsers) {
       res.json(dbUsers);
     })
   })
-  
+
   // gets list of user specific activities //
   app.get("/api/activitiesGet/:user_id", function (req, res) {
-    db.Activities.findAll({ 
+    db.Activities.findAll({
       limit: 10,
-      where: { 
-          user_id: req.params.user_id 
-        }
-    }).then(function (dbActivities) {  
+      where: {
+        user_id: req.params.user_id
+      }
+    }).then(function (dbActivities) {
       res.json(dbActivities);
-    });  
-  });  
+    });
+  });
 
 
   //get user specific calorie/food data
   app.get("/api/caloriesGet/:user_id", function (req, res) {
     db.Calories.findAll({
-      limit:10,
-      where: { 
-        user_id: req.params.user_id 
+      limit: 10,
+      where: {
+        user_id: req.params.user_id
       }
     }).then(function (dbCalories) {
       res.json(dbCalories);
@@ -50,17 +50,70 @@ module.exports = function (app) {
   //get user specific weight data
   app.get("/api/userweightGet/:user_id", function (req, res) {
     db.Userweights.findAll({
-      where: { 
-        user_id: req.params.user_id 
+      where: {
+        user_id: req.params.user_id
       }
     }).then(function (dbUserweight) {
       res.json(dbUserweight);
     });
   });
 
+  // get data for Charts displays
+  app.get("/api/userdataGet/:user_id", function (req, res) {
+    var activities_hbsObject = [];
+    var calories_hbsObject = [];
+    var weights_hbsObject = [];
+    db.Activities.findAll({
+      limit: 5,
+      order: [['createdAt', 'DESC']],
+      where: {
+        user_id: req.params.user_id,
+      }
+    }).then(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        activities_hbsObject.push(data[i].dataValues);
+      }
+    });
+    db.Calories.findAll({
+      limit: 5,
+      order: [['createdAt', 'DESC']],
+      where: {
+        user_id: req.params.user_id,
+      }
+    }).then(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        calories_hbsObject.push(data[i].dataValues);
+      }
+      // res.render("layouts/charts", {
+      //   Activities: activities_hbsObject,
+      //   Calories: calories_hbsObject
 
+      // })
+    });
+    db.Userweights.findAll({
+      limit: 5,
+      order: [['createdAt', 'DESC']],
+      where: {
+        user_id: req.params.user_id,
+      }
+    }).then(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        weights_hbsObject.push(data[i].dataValues);
+      }
+      res.render("layouts/charts", {
+        Activities: activities_hbsObject,
+        Calories: calories_hbsObject,
+        Weights: weights_hbsObject
+      })
+    });
+    return {
+      Activities: activities_hbsObject,
+      Calories: calories_hbsObject,
+      Weights: weights_hbsObject
+    }
+  });
 
-////////// POSTS ///////////
+  ////////// POSTS ///////////
 
   // new user api post
   app.post("/api/userCreate", function (req, res) {
@@ -69,7 +122,12 @@ module.exports = function (app) {
       password: req.body.password,
       starting_weight: req.body.starting_weight,
       target_weight: req.body.target_weight
+<<<<<<< HEAD
     }).then(function(dbUser){
+=======
+
+    }).then(function (dbUser) {
+>>>>>>> 89f70bcc310abe1e72a491e79f031e1bb6705c57
       res.json(dbUser);
     });
   });
@@ -80,7 +138,7 @@ module.exports = function (app) {
       user_id: req.body.user_id,
       food_name: req.body.food_name,
       total_cal_con: req.body.total_cal_con
-    }).then(function(dbCalories){
+    }).then(function (dbCalories) {
       res.json(dbCalories);
     })
   });
@@ -93,7 +151,7 @@ module.exports = function (app) {
       activity_quantity: req.body.activity_quantity,
       activity_date: req.body.activity_date,
       total_cal_burn: req.body.total_cal_burn
-    }).then(function(dbActivities){
+    }).then(function (dbActivities) {
       res.json(dbActivities);
     });
   });
@@ -103,7 +161,7 @@ module.exports = function (app) {
     db.Userweights.create({
       user_id: req.body.user_id,
       user_weight: req.body.user_weight,
-    }).then(function(dbUserweight){
+    }).then(function (dbUserweight) {
       res.json(dbUserweight);
     });
   });
