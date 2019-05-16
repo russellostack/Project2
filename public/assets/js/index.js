@@ -176,7 +176,7 @@ $(document).ready(function () {
             console.log(data);
             api.userCreation(JSON.stringify(data));
             console.log("user successfully created");
-            window.location = 'https://fit-or-fatapp.herokuapp.com//input';
+            window.location = 'https://fit-or-fatapp.herokuapp.com/input';
         });
 
 
