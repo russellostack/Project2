@@ -36,23 +36,24 @@ module.exports = function (app) {
   });
 
   app.get("/charts", function (req, res) {
-    if (req.isAuthenticated()) {
-      var user = {
-        id: req.session.passport.user_id,
-        isloggedin: req.isAuthenticated()
-      }
-      res.render("charts", user);
-    }
-    else {
-      res.render("index");
-    }
-
-    // Render 404 page for any unmatched routes
-    app.get("*", function (req, res) {
-      res.render("layouts/404");
-    });
-
-    // Here we've add our isAuthenticated middleware to this route.
-    // If a user who is not logged in tries to access this route they will be redirected to the signup page
+    // if (req.isAuthenticated()) {
+    //   var user = {
+    //     id: req.session.passport.user_id,
+    //     isloggedin: req.isAuthenticated()
+    //   }
+    // res.render("charts", user);
+    res.render("layouts/charts");
   });
-}
+  // else {
+  //   res.render("index");
+  // }
+
+  // Render 404 page for any unmatched routes
+  app.get("*", function (req, res) {
+    res.render("layouts/404");
+  });
+
+  // Here we've add our isAuthenticated middleware to this route.
+  // If a user who is not logged in tries to access this route they will be redirected to the signup page
+};
+
