@@ -92,8 +92,8 @@ module.exports = function (app) {
     db.Activities.create({
       user_id: req.body.user_id,
       activity_name: req.body.activity_name,
-      activity_quantity: req.bdy.activity_quantity,
-      actifity_date: req.body.activity_date,
+      activity_quantity: req.body.activity_quantity,
+      activity_date: req.body.activity_date,
       total_cal_burn: req.body.total_cal_burn
     }).then(function(dbActivities){
       res.json(dbActivities);
@@ -105,7 +105,6 @@ module.exports = function (app) {
     db.Userweights.create({
       user_id: req.body.user_id,
       user_weight: req.body.user_weight,
-      input_time: req.body.input_time,
     }).then(function(dbUserweight){
       res.json(dbUserweight);
     });

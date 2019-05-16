@@ -14,17 +14,11 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       notEmpty: true,
       unique: true,
-      validate: {
-        len: [1]
-      }
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       notEmpty: true,
-      validate: {
-        len: [6]
-      }
     },
     starting_weight: {
       type: DataTypes.INTEGER,

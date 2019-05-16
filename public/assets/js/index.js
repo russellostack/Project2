@@ -118,11 +118,11 @@ var api = {
     userweightGet: function (user_id) {
         return $.ajax({
             headers: { "Content-type": "application/json" },
-            url: "api/userweightGet/"+ user_id,
+            url: "api/userweightGet/" + user_id,
             type: "GET"
         })
     },
-    userGet: function(){
+    userGet: function () {
         return $.ajax({
             headers: { "Content-type": "application/json" },
             url: "api/userGet",
@@ -131,6 +131,125 @@ var api = {
     }
 };
 
+
+///////////// sign in page /////////////////
+
+
+///////////// sign in button //////////////
+var newuserbutton = function () {
+    var user_name = $("#inputNewUserName").val();
+    var password = $("#inputNewPassword").val();
+    var current_weight = $("#inputCurrentWeight").val();
+    var target_weight = $("#inputTargetWeight").val();
+    var data = { user_name, password, current_weight, target_weight };
+    api.userCreation(data);
+}
+
+$("#newusermodalbtn").click(newuserbutton());
+
+$("#sign-in-btn").click(function () {
+    event.preventDefault();
+    $("#sign-in-modal").modal("show");
+    // When "sign in" MODAL is ready - input validation:
+    $("#sign-in-modal").ready(function () {
+        console.log("validator");
+        $("#signinmodalbtn").click(function () {
+            event.preventDefault();
+            var input = $("#inputUserName");
+            var form = $("#sign-in-modal-form");
+            if (input[0].checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.addClass("was-validated");
+        });s
+    });
+});
+
+
+
+// "Create new user" button click event:
+
+
+
+$("#new-user-bnt").click(function () {
+    console.log("ive been clicked");
+    event.preventDefault();
+    $("#new-user-modal").modal("show");
+
+    // When "create new user" MODAL is ready - input validation:
+    $("#new-user-modal").ready(function () {
+        console.log("validator");
+        $("#newusermodalbtn").click(function () {
+            console.log('button');
+            event.preventDefault();
+            var user = {
+                username: $('#inputNewUserName').val(),
+                password: $('#inputNewPassword').val(),
+                starting_weight: $('#inputCurrentWeight').val(),
+                target_weight: $('#inputTargetWeight').val()
+            }
+            console.log(user);
+            $.ajax({
+                method: 'POST',
+                url: '/api/userCreate',
+                data: user
+            }).then(function () {
+                console.log('things happened');
+                $('#new-user-modal').modal('hide');
+            })
+
+        })
+        //var input = $("#inputNewUserName");
+        //var form = $("#new-user-modal-form");
+
+        /* if (input[0].checkValidity() === false) {
+             event.preventDefault();
+             event.stopPropagation();
+         }
+         form.addClass("was-validated");*/
+    });
+});
+
+//////////////// input page stuff /////////////////
+
+
+
+var foodbuttonclick = function () {
+    console.log(("#food-input").val());
+    var foodName = {
+        name: $("#food-input").val().trim(),
+    };
+    foodName.replace(" ", "%20");
+    var queryURL = "'https://api.edamam.com/api/food-database/parser?ingr=" + foodName + "&app_id={2cea8c5e}&app_key={3742da7bb611e71fab3e49e361fdbb55}"
+
+    $.ajax({
+        url: queryURL,
+        method: "POST"
+    }).then(function (response) {
+        total_cal_con = response.hints[0].food.nutrients.ENERC_KCAL;
+        food_name = response.hints[0].food.label;
+        api.caloriePost(total_cal_con)
+
+        var data = {total_cal_con, food_name};
+        api.caloriePost(data);
+    });
+};
+var activitybuttonclick = function(){
+    var activityType = $("#activity-type-input").val().trim();
+    var activityAmount = $("#activity-amt-input").val().trim();
+    var data = {activityAmount, activityType};
+    api.activityPost(data);
+};
+var weightbuttonclick = function(){
+    var user_weight = $("#weight-input").val().trim();
+    api.userweightPost(user_weight);
+};
+
+
+$("#food-submit").click(foodbuttonclick());
+$("#activity-submit").click(activitybuttonclick());
+$("#weight-submit").click(weightbuttonclick());
 
 
 
