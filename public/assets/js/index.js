@@ -176,7 +176,7 @@ $(document).ready(function () {
             console.log(data);
             api.userCreation(JSON.stringify(data));
             console.log("user successfully created");
-            window.location.href('https://fit-or-fatapp.herokuapp.com//input');
+            window.location = 'https://fit-or-fatapp.herokuapp.com//input';
         });
 
 
@@ -227,12 +227,9 @@ $(document).ready(function () {
         $("#weight-submit").click(function () {
             var user_weight = $("#weight-input").val().trim();
             api.userweightPost(JSON.stringify(user_weight));
-            window.location.href("https://fit-or-fatapp.herokuapp.com/charts");
+            window.location = "https://fit-or-fatapp.herokuapp.com/charts";
 
         });
-
-        ////////////////  charts page listener ////////////////
-
 
     });
 });
