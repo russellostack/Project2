@@ -10,10 +10,10 @@ var db = {};
 
 
 var sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  config.host
+  config.production.database,
+  config.production.username,
+  config.production.password,
+  config.production.host
 );
 
 fs.readdirSync(__dirname)
