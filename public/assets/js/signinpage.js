@@ -14,7 +14,7 @@ var newuserbutton = function () {
     var current_weight = $("#inputCurrentWeight").val();
     var target_weight = $("#inputTargetWeight").val();
     var data = { user_name, password, current_weight, target_weight };
-    api.userCreation(data);
+    //api.userCreation(data);
 }
 
 $("#newusermodalbtn").click(newuserbutton());
@@ -44,19 +44,38 @@ $("#new-user-bnt").click(function () {
     $("#new-user-modal").modal("show");
 
     // When "create new user" MODAL is ready - input validation:
-    $("#new-user-modal").ready(function () {
+   $("#new-user-modal").ready(function () {
         console.log("validator");
         $("#newusermodalbtn").click(function () {
-            event.preventDefault();
-            var input = $("#inputNewUserName");
-            var form = $("#new-user-modal-form");
-            if (input[0].checkValidity() === false) {
+          console.log('button');
+          event.preventDefault();
+          var user = {
+            username: $('#inputNewUserName').val(),
+            password: $('#inputNewPassword').val(),
+            starting_weight: $('#inputCurrentWeight').val(),
+            target_weight: $('#inputTargetWeight').val()
+          }
+          console.log(user);
+          $.ajax({
+            method: 'POST', 
+            url: '/api/userCreate',
+            data: user
+          }).then(function() {
+            console.log('things happened');
+            $('#new-user-modal').modal('hide');
+            })
+            
+          })
+            //var input = $("#inputNewUserName");
+            //var form = $("#new-user-modal-form");
+
+           /* if (input[0].checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
             }
-            form.addClass("was-validated");
+            form.addClass("was-validated");*/
         });
     });
-});
+//});
 
 
