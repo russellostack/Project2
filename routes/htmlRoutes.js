@@ -23,16 +23,16 @@ module.exports = function (app) {
 
   // Load example page and pass in an example by id
   app.get("/input", function (req, res) {
-    if (req.isAuthenticated()) {
-      var user = {
-        id: req.session.passport.user_id,
-        isloggedin: req.isAuthenticated()
-      }
+    // if (req.isAuthenticated()) {
+    //   var user = {
+    //     id: req.session.passport.user_id,
+    //     isloggedin: req.isAuthenticated()
+    //   }
       res.render("input", user);
-    }
-    else {
-      res.render("index");
-    }
+    // }
+    // else {
+    //   res.render("index");
+    // }
   });
 
   app.get("/charts", function (req, res) {
