@@ -9,33 +9,50 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
+    if (req.isAuthenticated()) {
+      var user = {
+        id: req.session.passport.user_id,
+        isloggedin: req.isAuthenticated()
+      }
+      res.render("index", user);
+    }
+    else {
       res.render("index");
+    }
   });
 
   // Load example page and pass in an example by id
   app.get("/input", function (req, res) {
-    // if(req.user){
-      res.render("input");
-    // }
-    // res.render('index');
+    if (req.isAuthenticated()) {
+      var user = {
+        id: req.session.passport.user_id,
+        isloggedin: req.isAuthenticated()
+      }
+      res.render("input", user);
+    }
+    else {
+      res.render("index");
+    }
   });
 
   app.get("/charts", function (req, res) {
-    if(req.user) {
-     res.render("layouts/charts");
+    if (req.isAuthenticated()) {
+      var user = {
+        id: req.session.passport.user_id,
+        isloggedin: req.isAuthenticated()
+      }
+      res.render("charts", user);
     }
-    res.render('index');    
-  })
+    else {
+      res.render("index");
+    }
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function (req, res) {
-    res.render("layouts/404");
+    // Render 404 page for any unmatched routes
+    app.get("*", function (req, res) {
+      res.render("layouts/404");
+    });
+
+    // Here we've add our isAuthenticated middleware to this route.
+    // If a user who is not logged in tries to access this route they will be redirected to the signup page
   });
-
-  // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/input", isAuthenticated, function(req, res) {
-    res.render('index');
-  });
-
-};
+}

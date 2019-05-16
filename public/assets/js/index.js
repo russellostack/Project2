@@ -133,11 +133,7 @@ $(document).ready(function () {
     };
 
 
-    ///////////// sign in page /////////////////
-
-
-    ///////////// sign in button //////////////
-
+    
 
     $(function () {
 
