@@ -176,7 +176,7 @@ $(document).ready(function () {
             console.log(data);
             api.userCreation(JSON.stringify(data));
             console.log("user successfully created");
-            // window.location = 'http://www.localhost:3000/input';
+            window.location = 'http://www.localhost:3000/input';
         });
 
 
