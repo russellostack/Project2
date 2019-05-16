@@ -68,7 +68,6 @@ $(document).ready(function () {
     yearGenerator();
 
 
-
     var api = {
         userCreation: function (user) {
             return $.ajax({
@@ -123,6 +122,13 @@ $(document).ready(function () {
                 type: "GET"
             })
         },
+        userdataGet: function (user_id) {
+            return $.ajax({
+                headers: { "Content-type": "application/json" },
+                url: "api/userdataGet/" + user_id,
+                type: "GET"
+            })
+        },
         userGet: function () {
             return $.ajax({
                 headers: { "Content-type": "application/json" },
@@ -133,7 +139,7 @@ $(document).ready(function () {
     };
 
 
-    
+
 
     $(function () {
 
@@ -143,6 +149,7 @@ $(document).ready(function () {
             window.location = 'http://www.localhost:3000/input';
         });
         $(".chartspagelink").click(function () {
+            // api.userdataGet(user_id);
             window.location = "http://www.localhost:3000/charts"
         });
         $(".homepagelink").click(function () {
