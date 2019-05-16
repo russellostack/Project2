@@ -9,16 +9,16 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    if (req.isAuthenticated()) {
-      var user = {
-        id: req.session.passport.user_id,
-        isloggedin: req.isAuthenticated()
-      }
-      res.render("index", user);
-    }
-    else {
+    // if (req.isAuthenticated()) {
+    //   var user = {
+    //     id: req.session.passport.user_id,
+    //     isloggedin: req.isAuthenticated()
+    //   }
       res.render("index");
-    }
+    // }
+    // else {
+    //   res.render("index");
+    // }
   });
 
   // Load example page and pass in an example by id
@@ -28,7 +28,7 @@ module.exports = function (app) {
     //     id: req.session.passport.user_id,
     //     isloggedin: req.isAuthenticated()
     //   }
-      res.render("input");
+      res.render("layouts/input");
     // }
     // else {
     //   res.render("index");
