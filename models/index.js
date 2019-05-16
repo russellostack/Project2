@@ -13,7 +13,8 @@ var sequelize = new Sequelize(
   config.production.database,
   config.production.username,
   config.production.password,
-  config.production.host
+  config.production.host,
+  config.production.dialect
 );
 
 fs.readdirSync(__dirname)
