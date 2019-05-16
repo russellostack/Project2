@@ -146,14 +146,14 @@ $(document).ready(function () {
         /////////////// page change button listeners /////////
 
         $('.inputpagelink').click(function () {
-            window.location = 'http://www.localhost:3000/input';
+            window.location = 'https://fit-or-fatapp.herokuapp.com/input';
         });
         $(".chartspagelink").click(function () {
             // api.userdataGet(user_id);
-            window.location = "http://www.localhost:3000/charts"
+            window.location = "https://fit-or-fatapp.herokuapp.com/charts"
         });
         $(".homepagelink").click(function () {
-            window.location = "http://www.localhost:3000"
+            window.location = "https://fit-or-fatapp.herokuapp.com/"
         })
 
         //////// new user modal button listener /////////////
