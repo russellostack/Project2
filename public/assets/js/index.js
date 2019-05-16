@@ -178,22 +178,8 @@ $(document).ready(function () {
         $("#sign-in-btn").on("click", function () {
             event.preventDefault();
             $("#sign-in-modal").modal("show");
-            // When "sign in" MODAL is ready - input validation:
-            $("#sign-in-modal").ready(function () {
-                console.log("validator");
-                $("#signinmodalbtn").click(function () {
-                    event.preventDefault();
-                    var input = $("#inputUserName").val().trim();
-                    var form = $("#sign-in-modal-form").val().trim();
-                    if (input[0].checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.addClass("was-validated");
-                });
-            });
             console.log("sign in button clicked/validated");
-            window.location = 'http://www.localhost:3000/input';
+            // window.location = 'http://www.localhost:3000/input';
         });
 
         ////////////// food submit listener /////////////
