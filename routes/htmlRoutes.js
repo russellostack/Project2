@@ -14,10 +14,10 @@ module.exports = function (app) {
 
   // Load example page and pass in an example by id
   app.get("/input", function (req, res) {
-    if(req.user){
+    // if(req.user){
       res.render("input");
-    }
-    res.render('index');
+    // }
+    // res.render('index');
   });
 
   app.get("/charts", function (req, res) {
