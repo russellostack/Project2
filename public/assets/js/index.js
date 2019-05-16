@@ -176,7 +176,7 @@ $(document).ready(function () {
             console.log(data);
             api.userCreation(JSON.stringify(data));
             console.log("user successfully created");
-            window.location = 'http://www.localhost:3000/input';
+            window.location = 'https://fit-or-fatapp.herokuapp.com//input';
         });
 
 
@@ -227,7 +227,7 @@ $(document).ready(function () {
         $("#weight-submit").click(function () {
             var user_weight = $("#weight-input").val().trim();
             api.userweightPost(JSON.stringify(user_weight));
-            window.location = "http://www.localhost:3000/charts";
+            window.location = "https://fit-or-fatapp.herokuapp.com/charts";
 
         });
 
