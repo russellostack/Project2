@@ -9,13 +9,13 @@ var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
 
 
-var sequelize = new Sequelize(
-  config.production.database,
-  config.production.username,
-  config.production.password,
-  config.production.host,
-  config.production.dialect
-);
+var sequelize = new Sequelize({
+  "dialect": "mysql",
+  "username": "uko7y7z3objabdgs",
+  "password": "x4nvxw8h2pygzqk1",
+  "database": "xiafakvksxxa48jb",
+  "host": "jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+});
 
 fs.readdirSync(__dirname)
   .filter(function (file) {
