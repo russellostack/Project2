@@ -28,7 +28,7 @@ module.exports = function (app) {
     //     id: req.session.passport.user_id,
     //     isloggedin: req.isAuthenticated()
     //   }
-      res.render("input", user);
+      res.render("input");
     // }
     // else {
     //   res.render("index");
