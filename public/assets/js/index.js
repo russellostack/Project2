@@ -168,7 +168,7 @@ $(document).ready(function () {
             };
             api.userCreation(data);
             $('#new-user-modal').modal('hide');
-            window.location = 'http://www.localhost:3000/input';
+            // window.location = 'http://www.localhost:3000/input';
         });
 
 

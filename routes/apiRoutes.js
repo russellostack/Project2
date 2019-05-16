@@ -69,18 +69,16 @@ module.exports = function (app) {
       password: req.body.password,
       starting_weight: req.body.starting_weight,
       target_weight: req.body.target_weight
-
     }).then(function(dbUser){
       res.json(dbUser);
     });
   });
 
   // user specific calorie input post
-  app.post("/api/caloriePost/:user_id", function (req, res) {
+  app.post("/api/caloriePost", function (req, res) {
     db.Calories.create({
       user_id: req.body.user_id,
       food_name: req.body.food_name,
-      food_date: req.body.food_date,
       total_cal_con: req.body.total_cal_con
     }).then(function(dbCalories){
       res.json(dbCalories);
@@ -88,7 +86,7 @@ module.exports = function (app) {
   });
 
   //user based activity input post
-  app.post("/api/activityPost/:user_id", function (req, res) {
+  app.post("/api/activityPost", function (req, res) {
     db.Activities.create({
       user_id: req.body.user_id,
       activity_name: req.body.activity_name,
@@ -101,7 +99,7 @@ module.exports = function (app) {
   });
 
   //"update" current user weight by posting to user weight table.
-  app.post("/api/userweightPost/:user_id", function (req, res) {
+  app.post("/api/userweightPost", function (req, res) {
     db.Userweights.create({
       user_id: req.body.user_id,
       user_weight: req.body.user_weight,
