@@ -168,13 +168,14 @@ $(document).ready(function () {
         $("#newusermodalbtn").on("click", function () {
             event.preventDefault();
             var data = {
-                user_name: $("#inputNewUserName").val().trim(),
+                username: $("#inputNewUserName").val().trim(),
                 password: $("#inputNewPassword").val().trim(),
-                current_weight: $("#inputCurrentWeight").val().trim(),
+                starting_weight: $("#inputCurrentWeight").val().trim(),
                 target_weight: $("#inputTargetWeight").val().trim()
             };
-            api.userCreation(data);
-            $('#new-user-modal').modal('hide');
+            console.log(data);
+            api.userCreation(JSON.stringify(data));
+            console.log("user successfully created");
             // window.location = 'http://www.localhost:3000/input';
         });
 
@@ -186,7 +187,6 @@ $(document).ready(function () {
             event.preventDefault();
             $("#sign-in-modal").modal("show");
             console.log("sign in button clicked/validated");
-            // window.location = 'http://www.localhost:3000/input';
         });
 
         ////////////// food submit listener /////////////
@@ -205,7 +205,7 @@ $(document).ready(function () {
                 total_cal_con = { total_cal_con: response.hints[0].food.nutrients.ENERC_KCAL };
                 food_name = { food_name: response.hints[0].food.label };
                 var data = { total_cal_con, food_name };
-                api.caloriePost(data);
+                api.caloriePost(JSON.stringify(data));
                 console.log("food submitted!");
             });
         });
@@ -215,8 +215,10 @@ $(document).ready(function () {
         $("#activity-submit").click(function () {
             var activity_name = { activity_name: $("#activity-type-input").val().trim() };
             var activity_quantity = { activity_quantity: $("#activity-amt-input").val().trim() };
-            var data = { activity_name, activity_quantity };
-            api.activityPost(data);
+            var activity_date = {activity_date: Date().getTime()};
+            var total_cal_burn = {total_cal_burn: ($("#activity-amt-input").val().trim() * 150 )};
+            var data = { activity_name, activity_quantity, activity_date, total_cal_burn };
+            api.activityPost(JSON.stringify(data));
             console.log("activity submitted!");
         });
 
@@ -224,7 +226,7 @@ $(document).ready(function () {
 
         $("#weight-submit").click(function () {
             var user_weight = $("#weight-input").val().trim();
-            api.userweightPost(user_weight);
+            api.userweightPost(JSON.stringify(user_weight));
             window.location = "http://www.localhost:3000/charts";
 
         });

@@ -122,12 +122,7 @@ module.exports = function (app) {
       password: req.body.password,
       starting_weight: req.body.starting_weight,
       target_weight: req.body.target_weight
-<<<<<<< HEAD
     }).then(function(dbUser){
-=======
-
-    }).then(function (dbUser) {
->>>>>>> 89f70bcc310abe1e72a491e79f031e1bb6705c57
       res.json(dbUser);
     });
   });
